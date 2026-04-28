@@ -1,19 +1,27 @@
-import { Button } from "@/components/ui/button"
+import HeroSlider from "@/components/Custom-Components/HeroSection"
+import AboutSection from "@/components/Custom-Components/aboutSchool"
+import NoticeBoard from "@/components/Custom-Components/NoticeSection"
+import MessageSection from "@/components/Custom-Components/MessageSection"
+import TeacherSection from "@/components/Custom-Components/TeacherSection"
+import StudentStatistics from "@/components/Custom-Components/StudentStatistics"
+import MediaGallery from "@/components/Custom-Components/GallarySection"
+import InstitutionStatistics from "@/components/Custom-Components/InstitutionStatistics"
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
+    <>
+      <div className="flex p-6">
+        <HeroSlider></HeroSlider>
       </div>
-    </div>
+      <div className="flex items-center justify-between">
+        <AboutSection></AboutSection>
+        <NoticeBoard></NoticeBoard>
+      </div>
+      <InstitutionStatistics></InstitutionStatistics>
+      <MessageSection></MessageSection>
+      <TeacherSection></TeacherSection>
+      <StudentStatistics></StudentStatistics>
+      <MediaGallery></MediaGallery>
+    </>
   )
 }
