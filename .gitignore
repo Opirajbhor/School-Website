@@ -30,9 +30,17 @@ pnpm-debug.log*
 
 # env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 /generated/prisma
+
+
+
+# prettier
+.prettierignore
+.prettierrc
+

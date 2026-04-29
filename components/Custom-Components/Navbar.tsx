@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
+import Link from "next/link"
+import { useState } from "react"
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,22 +9,22 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+} from "@/components/ui/navigation-menu"
+import { Button } from "@/components/ui/button"
+import { Menu } from "lucide-react"
+import ModeToggle from "../ui/modeToggle"
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   return (
     <nav className="border-b bg-background">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         {/* Logo */}
         <div className="flex items-center gap-3">
           <div className="text-2xl">🌾</div>
           <div>
-            <h1 className="font-semibold text-lg">XYZ School & College</h1>
+            <h1 className="text-lg font-semibold">XYZ School & College</h1>
             <p className="text-xs text-muted-foreground">
               a revolutionary way to educate
             </p>
@@ -34,10 +34,9 @@ export default function Navbar() {
         {/* Desktop Menu (shadcn) */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
-
             <NavigationMenuItem>
               <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className="px-4 py-2 rounded-md bg-primary text-primary-foreground">
+                <NavigationMenuLink className="rounded-md bg-primary px-4 py-2 text-primary-foreground">
                   মূলপাতা
                 </NavigationMenuLink>
               </Link>
@@ -45,7 +44,7 @@ export default function Navbar() {
 
             <NavigationMenuItem>
               <NavigationMenuTrigger>পরিচিতি</NavigationMenuTrigger>
-              <NavigationMenuContent className="p-2 space-y-2 w-44">
+              <NavigationMenuContent className="w-44 space-y-2 p-2">
                 <Link href="/about/history" legacyBehavior passHref>
                   <NavigationMenuLink>ইতিহাস</NavigationMenuLink>
                 </Link>
@@ -60,7 +59,7 @@ export default function Navbar() {
 
             <NavigationMenuItem>
               <NavigationMenuTrigger>জনবল</NavigationMenuTrigger>
-              <NavigationMenuContent className="p-2 space-y-2 w-44">
+              <NavigationMenuContent className="w-44 space-y-2 p-2">
                 <Link href="/staff/teachers" legacyBehavior passHref>
                   <NavigationMenuLink>শিক্ষক</NavigationMenuLink>
                 </Link>
@@ -72,7 +71,7 @@ export default function Navbar() {
 
             <NavigationMenuItem>
               <NavigationMenuTrigger>শিক্ষার্থী</NavigationMenuTrigger>
-              <NavigationMenuContent className="p-2 space-y-2 w-44">
+              <NavigationMenuContent className="w-44 space-y-2 p-2">
                 <Link href="/students/list" legacyBehavior passHref>
                   <NavigationMenuLink>তালিকা</NavigationMenuLink>
                 </Link>
@@ -84,7 +83,7 @@ export default function Navbar() {
 
             <NavigationMenuItem>
               <NavigationMenuTrigger>পরীক্ষার ফলাফল</NavigationMenuTrigger>
-              <NavigationMenuContent className="p-2 space-y-2 w-44">
+              <NavigationMenuContent className="w-44 space-y-2 p-2">
                 <Link href="/result/jsc" legacyBehavior passHref>
                   <NavigationMenuLink>JSC</NavigationMenuLink>
                 </Link>
@@ -108,12 +107,12 @@ export default function Navbar() {
                 <NavigationMenuLink>যোগাযোগ</NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-
           </NavigationMenuList>
         </NavigationMenu>
 
         {/* Right */}
         <div className="flex items-center gap-2">
+          <ModeToggle></ModeToggle>
           <Button className="hidden md:flex">Login</Button>
 
           <Button
@@ -127,5 +126,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
