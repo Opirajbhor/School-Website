@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// School-info Model
+model schoolInfo {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 // Notice Model
 model Notice {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
