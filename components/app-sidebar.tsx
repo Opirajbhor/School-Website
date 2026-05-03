@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-
 import { NavDocuments } from "@/components/nav-documents"
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
@@ -31,8 +30,6 @@ import {
   FileIcon,
   CommandIcon,
 } from "lucide-react"
-import { dataFetch } from "@/lib/utils"
-import { prisma } from "@/lib/prisma/prisma"
 import { useEffect, useState } from "react"
 
 const data = {
@@ -44,110 +41,28 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: <LayoutDashboardIcon />,
     },
     {
-      title: "Lifecycle",
-      url: "#",
+      title: "Notices",
+      url: "/dashboard/notices",
       icon: <ListIcon />,
     },
     {
-      title: "Analytics",
-      url: "#",
+      title: "Teachers",
+      url: "/dashboard/teachers",
       icon: <ChartBarIcon />,
     },
     {
-      title: "Projects",
-      url: "#",
+      title: "Stuff",
+      url: "/dashboard/stuff",
       icon: <FolderIcon />,
     },
     {
-      title: "Team",
-      url: "#",
+      title: "Managing committee",
+      url: "/dashboard/managing-committee",
       icon: <UsersIcon />,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: <CameraIcon />,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: <FileTextIcon />,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: <FileTextIcon />,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: <Settings2Icon />,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: <CircleHelpIcon />,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: <SearchIcon />,
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: <DatabaseIcon />,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: <FileChartColumnIcon />,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: <FileIcon />,
     },
   ],
 }
@@ -155,12 +70,8 @@ const data = {
 export default function Page() {}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  // data fetch
-  // const res = fetch("http://localhost:3000/api/school-info")
-  // const schoolInfo = res.tittle
-  // const schoolInfo = await prisma.schoolInfo.findFirst()
+  // name data fetch---------
   const [info, setInfo] = useState(null)
-
   useEffect(() => {
     async function load() {
       const res = await fetch("http://localhost:3000/api/school-info")
@@ -172,6 +83,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   }, [])
   console.log("schoolInfo-", info)
   if (!info) return <div>Loading...</div>
+  // --------------
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -182,7 +94,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
-              <a href="#">
+              <a href="/dashboard">
                 <CommandIcon className="size-5!" />
                 <span className="text-base font-semibold">{info?.title}</span>
               </a>
@@ -192,8 +104,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
