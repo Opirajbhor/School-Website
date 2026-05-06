@@ -8,3 +8,4 @@ export interface dashboardLinks {
   src: string
   icon: string
 }
+

@@ -23,3 +23,14 @@ model Notice {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+// about school model
+model aboutSchool {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  key         String  @unique
+  title       String
+  description String
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

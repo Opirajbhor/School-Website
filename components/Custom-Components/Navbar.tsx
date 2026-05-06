@@ -113,7 +113,9 @@ export default function Navbar() {
         {/* Right */}
         <div className="flex items-center gap-2">
           <ModeToggle></ModeToggle>
-          <Button className="hidden md:flex">Login</Button>
+          <Button className="hidden md:flex">
+            <Link href={"/dashboard"}>Login</Link>
+          </Button>
 
           <Button
             variant="ghost"

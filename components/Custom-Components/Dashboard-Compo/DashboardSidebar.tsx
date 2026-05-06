@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { dashboardLinks } from "@/lib/types/Interfaces"
+import { School } from "lucide-react"
 import Link from "next/link"
 
 // dashboard links
@@ -14,6 +15,11 @@ const links: dashboardLinks[] = [
     src: "/dashboard/notices",
     icon: "",
   },
+  {
+    name: "About School",
+    src: "/dashboard/about-school",
+    icon: "<School />",
+  },
 ]
 
 export default function DashboardSidebar() {
@@ -26,7 +32,7 @@ export default function DashboardSidebar() {
           <Button
             key={i}
             variant="ghost"
-            className="w-full justify-start"
+            className="w-full hover:bg-accent justify-start"
             asChild
           >
             <Link href={link.src}>{link.name}</Link>

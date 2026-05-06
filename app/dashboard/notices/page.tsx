@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/prisma/prisma"
 import Link from "next/link"
+import { SquarePen, Trash } from "lucide-react"
 
 const data = await prisma.notice.findMany({
   orderBy: { createdAt: "desc" },
@@ -19,7 +20,7 @@ const data = await prisma.notice.findMany({
 export default function NoticesDashboard() {
   return (
     <div>
-      <h1 className="my-5 text-center text-2xl">All Notices</h1>
+      <h1 className="my-5 text-center text-2xl">All Notices ({data.length})</h1>
       <div className="my-5 flex gap-2">
         <Button className="item-right">
           <Link href={"/dashboard/notices/add-notice"}>Add Notice</Link>
@@ -33,7 +34,7 @@ export default function NoticesDashboard() {
               <TableHead>Name</TableHead>
               <TableHead>Description</TableHead>
               <TableHead>Date</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -45,12 +46,20 @@ export default function NoticesDashboard() {
                 {/* tittle */}
                 <TableCell className="font-medium">{item.title}</TableCell>
                 {/* description */}
-                <TableCell className="font-medium">{item.description}</TableCell>
+                <TableCell className="font-medium">
+                  {item.description}
+                </TableCell>
                 {/* date */}
                 <TableCell>{item?.createdAt.toLocaleDateString()}</TableCell>
                 {/* Actions */}
-                <TableCell className="text-right"></TableCell>
-              </TableRow> 
+                <TableCell className="flex gap-2">
+                  <Trash size={20} className="cursor-pointer text-red-500" />
+                  <SquarePen
+                    size={20}
+                    className="cursor-pointer text-yellow-500"
+                  />
+                </TableCell>
+              </TableRow>
             ))}
           </TableBody>
         </Table>
