@@ -5,28 +5,39 @@ import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import toast, { Toaster } from "react-hot-toast"
 
+import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
+import Image from "next/image"
+
 export default function AboutSchool() {
+  const [info, setInfo] = useState(null)
+
   const { register, handleSubmit, reset } = useForm()
   const onSubmit = async (data: Request) => {
+    const imgURl = await uploadImage(data?.image[0])
+
     const res = await fetch("/api/about-school", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        title: data?.title || info?.title,
+        description: data?.description || info?.description,
+        imageUrl: imgURl || info?.imageUrl,
+      }),
     })
     const result = await res.json()
     console.log("Form Data:", result)
     toast.success("Info Successfully Added!")
-    reset()
+    window.location.reload()
   }
 
   //   fetch data
-  const [info, setInfo] = useState(null)
   useEffect(() => {
     async function load() {
       const res = await fetch("/api/about-school")
       const json = await res.json()
+      console.log(json)
       setInfo(json)
     }
 
@@ -48,16 +59,24 @@ export default function AboutSchool() {
             required
           />
           <textarea
-            className="h-auto max-h-[250px] min-h-[100px] w-full resize-none overflow-auto rounded-2xl border-2 border-black p-3"
+            className="h-auto min-h-[200px] w-full resize-none overflow-auto rounded-2xl border-2 border-black p-3"
             {...register("description")}
             placeholder="description"
             defaultValue={info?.description}
             required
           />
+          <Image
+            src={info?.imageUrl}
+            width={400}
+            height={550}
+            alt="preview image"
+          ></Image>
+
           <Input
             className="h-12 rounded-2xl border-2 border-black p-3"
             type="file"
             accept="image/*"
+            {...register("image")}
             defaultValue={info?.imageUrl || ""}
           />
           <button className="rounded-2xl bg-accent p-3" type="submit">

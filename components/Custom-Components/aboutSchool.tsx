@@ -1,17 +1,30 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
 
 export default function AboutSection() {
-  return (
-    <section className="w-full py-16 bg-background">
-      <div className="max-w-7xl mx-auto px-4 relative">
+  const [info, setInfo] = useState(null)
 
+  //   fetch data
+  useEffect(() => {
+    async function load() {
+      const res = await fetch("/api/about-school")
+      const json = await res.json()
+      console.log(json)
+      setInfo(json)
+    }
+
+    load()
+  }, [])
+  return (
+    <section className="w-full bg-background py-16">
+      <div className="relative mx-auto max-w-7xl px-4">
         {/* Image */}
-        <div className="relative w-full md:w-[60%] h-[450px] rounded-xl overflow-hidden">
+        <div className="relative h-[450px] w-full overflow-hidden rounded-xl md:w-[60%]">
           <Image
-            src="/school.jpg"
+            src={info?.imageUrl}
             alt="school"
             fill
             className="object-cover"
@@ -22,30 +35,20 @@ export default function AboutSection() {
         </div>
 
         {/* Card */}
-        <div className="relative md:absolute md:top-12 md:right-0 w-full md:w-[55%] mt-6 md:mt-0">
-          <div className="bg-card text-card-foreground rounded-xl shadow-lg p-6 md:p-8 space-y-4">
+        <div className="relative mt-6 w-full md:absolute md:top-12 md:right-0 md:mt-0 md:w-[55%]">
+          <div className="space-y-4 rounded-xl bg-card p-6 text-card-foreground shadow-lg md:p-8">
+            <h2 className="text-2xl font-bold md:text-3xl">{info?.title}</h2>
 
-            <h2 className="text-2xl md:text-3xl font-bold">
-              প্রতিষ্ঠান সম্পর্কে
-            </h2>
+            <div className="h-1 w-16 rounded-full bg-primary" />
 
-            <div className="w-16 h-1 bg-primary rounded-full" />
-
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              এক্সওয়াইজেড স্কুল এবং কলেজ এর অতীত গৌরবোজ্জ্বল বর্তমান প্রশাসন।
-              ২০২৩ ইংরেজির ২০ জানুয়ারি এক্সওয়াইজেড স্কুল এবং কলেজ এর স্থানীয়
-              ম্যানেজিং কমিটির তত্ত্বাবধানে পরিচালিত হয়। এক্সওয়াইজেড কর্তৃক
-              প্রতিষ্ঠিত হওয়ার পর এটি একটি গভর্নমেন্ট স্কুল নামে পরিচিতি লাভ করে।
-              ৩ জন বাংলাদেশী, ৩ জন ইংরেজ এবং ৩ জন মিশনারির উদ্যোগে একটি কমিটির
-              অধীনে পরিচালিত হয়।
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {info?.description}
             </p>
 
             <Button>বিস্তারিত পড়ুন</Button>
-
           </div>
         </div>
-
       </div>
     </section>
-  );
+  )
 }
