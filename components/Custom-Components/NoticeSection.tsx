@@ -24,14 +24,9 @@ export default function NoticeBoard() {
           {notices.map((notice, i) => (
             <Card
               key={i}
-              className="flex items-center justify-between rounded-xl p-4 shadow-sm"
+              className="flex flex-row items-center justify-between rounded-xl p-4 shadow-sm"
             >
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-destructive/10 p-2">
-                  <AlertCircle className="text-destructive" size={20} />
-                </div>
-                <p className="text-sm font-medium">{notice.title}</p>
-              </div>
+              <p className="text-sm font-medium">{notice.title}</p>
 
               <Link
                 href={`/notices/${notice.id}`}

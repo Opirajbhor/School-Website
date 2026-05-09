@@ -27,10 +27,20 @@ model Notice {
 // about school model
 model aboutSchool {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  key         String  @unique
+  key         String   @unique
   title       String
   description String
   imageUrl    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+// banner model
+model banner {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  key       String   @unique
+  title     String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

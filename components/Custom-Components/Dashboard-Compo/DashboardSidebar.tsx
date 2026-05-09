@@ -6,8 +6,8 @@ import Link from "next/link"
 // dashboard links
 const links: dashboardLinks[] = [
   {
-    name: "Dashboard",
-    src: "/dashboard",
+    name: "Homepage",
+    src: "/dashboard/homepage",
     icon: "",
   },
   {
@@ -32,7 +32,7 @@ export default function DashboardSidebar() {
           <Button
             key={i}
             variant="ghost"
-            className="w-full hover:bg-accent justify-start"
+            className="w-full justify-start hover:bg-accent"
             asChild
           >
             <Link href={link.src}>{link.name}</Link>
