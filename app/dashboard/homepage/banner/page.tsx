@@ -1,11 +1,36 @@
-import { LogoIcon } from "@/components/logo"
+"use client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
-import Link from "next/link"
+import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
+import Image from "next/image"
+import React, { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import toast, { Toaster } from "react-hot-toast"
 
 export default function BannerPage() {
+
+  const { register, handleSubmit, reset } = useForm()
+  const onSubmit = async (data: Request) => {
+    const imgURl = await uploadImage(data?.image[0])
+    const res = await fetch("/api/banner", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        key: data.banner,
+        title: data?.title || info?.title,
+        imageUrl: imgURl || info?.imageUrl,
+      }),
+    })
+    const result = await res.json()
+    console.log("Form Data:", data)
+    toast.success("Info Successfully Added!")
+    window.location.reload()
+  }
+
   return (
     <div className="mx-auto max-w-200 space-y-6">
       <div>
@@ -13,39 +38,53 @@ export default function BannerPage() {
           Change Homepage Banner
         </h1>
       </div>
-      <div>
-        <NativeSelect>
-          <NativeSelectOption value="" disabled>
-            Select status
-          </NativeSelectOption>
-          <NativeSelectOption value="banner-01">Banner 01</NativeSelectOption>
-          <NativeSelectOption value="banner-02">Banner 02</NativeSelectOption>
-          <NativeSelectOption value="banner-03">Banner 03</NativeSelectOption>
-        </NativeSelect>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="email" className="block text-sm">
-          Banner Title
-        </Label>
-        <Input type="text" required name="title" id="titlle" />
-      </div>
-
-      <div className="space-y-0.5">
-        <div className="flex items-center justify-between">
-          <Label htmlFor="pwd" className="text-sm">
-            Upload Image
-          </Label>
+      <form action="" onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <NativeSelect {...register("banner")}>
+            <NativeSelectOption value="banner-01">Banner 01</NativeSelectOption>
+            <NativeSelectOption value="banner-02">Banner 02</NativeSelectOption>
+            <NativeSelectOption value="banner-03">Banner 03</NativeSelectOption>
+          </NativeSelect>
         </div>
-        <Input
-          type="file"
-          required
-          name="file"
-          id="file"
-          className="input sz-md variant-mixed cursor-pointer mt-1"
-        />
-      </div>
+        <div className="space-y-2">
+          <Label htmlFor="email" className="block text-sm">
+            Banner Title
+          </Label>
+          <Input
+            type="text"
+            required
+            {...register("title")}
+            name="title"
+            id="titlle"
+          />
+        </div>
+        {/* <Image
+          src={info?.imageUrl}
+          width={400}
+          height={550}
+          alt="preview image"
+        ></Image> */}
 
-      <Button className="w-full">Update</Button>
+        <div className="space-y-0.5">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="pwd" className="text-sm">
+              Upload Image
+            </Label>
+          </div>
+          <Input
+            {...register("image")}
+            type="file"
+            required
+            accept="image/*"
+            className="input sz-md variant-mixed mt-1 cursor-pointer"
+          />
+        </div>
+
+        <Button type="submit" className="mt-5 w-full">
+          Update
+        </Button>
+      </form>
+      <Toaster />
     </div>
   )
 }

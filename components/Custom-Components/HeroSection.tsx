@@ -7,22 +7,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { heroData } from "@/lib/types/Interfaces"
+import { prisma } from "@/lib/prisma/prisma"
 
+const data = await prisma.banner.findMany()
+console.log(data)
 export default function HeroSlider() {
-  const data: heroData[] = [
-    {
-      src: "/images/hero1.jpg",
-      tittle: "স্বাগতম এক্সওয়াইজেড স্কুল এবং কলেজ এর পক্ষ থেকে!",
-    },
-    {
-      src: "/",
-      tittle: "আমাদের বিদ্যালয় মাঠ",
-    },
-    {
-      src: "/",
-      tittle: "আমাদের বিদ্যালয়ের মূল ভবন",
-    },
-  ]
+
+
 
   return (
     <div className="w-full">
@@ -33,8 +24,8 @@ export default function HeroSlider() {
             <CarouselItem key={index}>
               <div className="relative h-[75vh] overflow-hidden">
                 <Image
-                  src={item.src}
-                  alt={item.tittle}
+                  src={item.imageUrl}
+                  alt={item.title}
                   fill
                   priority
                   className="object-cover"
@@ -43,7 +34,7 @@ export default function HeroSlider() {
                 {/* overlay */}
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50 px-4 text-center">
                   <h1 className="text-3xl leading-snug font-bold text-white md:text-5xl">
-                    {item.tittle}
+                    {item.title}
                   </h1>
                 </div>
 
