@@ -12,7 +12,6 @@ export default function AboutSection() {
     async function load() {
       const res = await fetch("/api/about-school")
       const json = await res.json()
-      console.log(json)
       setInfo(json)
     }
 

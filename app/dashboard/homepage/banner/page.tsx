@@ -4,14 +4,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
-import Image from "next/image"
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import toast, { Toaster } from "react-hot-toast"
 
 export default function BannerPage() {
 
-  const { register, handleSubmit, reset } = useForm()
+  const { register, handleSubmit} = useForm()
   const onSubmit = async (data: Request) => {
     const imgURl = await uploadImage(data?.image[0])
     const res = await fetch("/api/banner", {
