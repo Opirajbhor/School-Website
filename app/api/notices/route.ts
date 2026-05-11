@@ -10,7 +10,6 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const body = await req.json()
-  console.log(body)
 
   const notice = await prisma.notice.create({
     data: {

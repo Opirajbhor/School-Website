@@ -18,7 +18,6 @@ export default function AddNotice() {
       body: JSON.stringify(data),
     })
     const result = await res.json()
-    console.log("Form Data:", result)
     toast.success("Notice Successfully Added!")
     reset()
   }

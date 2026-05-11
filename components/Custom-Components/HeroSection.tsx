@@ -10,7 +10,6 @@ import { heroData } from "@/lib/types/Interfaces"
 import { prisma } from "@/lib/prisma/prisma"
 
 const data = await prisma.banner.findMany()
-console.log(data)
 export default function HeroSlider() {
 
 

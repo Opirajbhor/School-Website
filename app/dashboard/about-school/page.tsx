@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast"
 
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import Image from "next/image"
+import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
 
 export default function AboutSchool() {
   const [info, setInfo] = useState(null)
@@ -26,8 +27,6 @@ export default function AboutSchool() {
         imageUrl: imgURl || info?.imageUrl,
       }),
     })
-    const result = await res.json()
-    console.log("Form Data:", result)
     toast.success("Info Successfully Added!")
     window.location.reload()
   }
@@ -37,12 +36,14 @@ export default function AboutSchool() {
     async function load() {
       const res = await fetch("/api/about-school")
       const json = await res.json()
-      console.log(json)
       setInfo(json)
     }
 
     load()
   }, [])
+  if (info == null) {
+    return <LoadingSpinner />
+  }
   return (
     <div>
       <h1 className="text-center text-2xl underline">About School Section</h1>
@@ -77,7 +78,6 @@ export default function AboutSchool() {
             type="file"
             accept="image/*"
             {...register("image")}
-            defaultValue={info?.imageUrl || ""}
           />
           <button className="rounded-2xl bg-accent p-3" type="submit">
             Submit

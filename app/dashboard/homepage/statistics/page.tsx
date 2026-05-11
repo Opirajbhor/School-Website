@@ -1,4 +1,5 @@
 "use client"
+import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -8,7 +9,7 @@ import toast, { Toaster } from "react-hot-toast"
 
 export default function Statistics() {
   const { register, handleSubmit } = useForm()
-  const [info, setInfo] = useState({})
+  const [info, setInfo] = useState(null)
 
   const onSubmit = async (data) => {
     const entries = Object.entries(data).map(([key, value]) => ({
@@ -39,6 +40,10 @@ export default function Statistics() {
 
     load()
   }, [])
+  if (info == null) {
+    return <LoadingSpinner />
+  }
+
   return (
     <div>
       <h1 className="mt-5 text-center underline">প্রতিষ্ঠানের পরিসংখ্যান</h1>
@@ -50,6 +55,7 @@ export default function Statistics() {
             required
             type="number"
             className="h-10 w-full"
+            defaultValue={info[3]?.value}
             {...register("students")}
           />
         </div>
@@ -59,6 +65,7 @@ export default function Statistics() {
             required
             type="number"
             className="h-10 w-full"
+            defaultValue={info[4]?.value}
             {...register("teachers")}
           />
         </div>
@@ -68,6 +75,7 @@ export default function Statistics() {
             required
             type="number"
             className="h-10 w-full"
+            defaultValue={info[2]?.value}
             {...register("stuff")}
           />
         </div>
@@ -77,6 +85,7 @@ export default function Statistics() {
             required
             type="number"
             className="h-10 w-full"
+            defaultValue={info[1]?.value}
             {...register("totalRoom")}
           />
         </div>
@@ -86,6 +95,7 @@ export default function Statistics() {
             required
             type="number"
             className="h-10 w-full"
+            defaultValue={info[0]?.value}
             {...register("building")}
           />
         </div>
