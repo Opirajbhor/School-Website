@@ -9,3 +9,9 @@ export interface dashboardLinks {
   icon: string
 }
 
+export interface messageHead {
+  title: string
+  name: string
+  image: string
+  desc: string
+}
