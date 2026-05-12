@@ -14,8 +14,13 @@ export default function HomepageCustomization() {
       icon: "",
     },
     {
-      link: "/dashboard/homepage/message",
-      name: "Message",
+      link: "/dashboard/homepage/headMasterMessage",
+      name: "HeadMaster Message",
+      icon: "",
+    },
+    {
+      link: "/dashboard/homepage/chairmanMessage",
+      name: "Chairman Message",
       icon: "",
     },
   ]
