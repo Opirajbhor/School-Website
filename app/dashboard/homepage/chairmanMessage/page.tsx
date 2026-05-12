@@ -22,9 +22,9 @@ export default function Message() {
       body: JSON.stringify({
         key: "chairman",
         title: "সভাপতি মহোদয়ের বাণী",
-        name: data?.name || info?.name,
-        desc: data?.desc || info?.desc,
-        image: imgURl || info?.image,
+        name: data?.name ?? info[1]?.name,
+        desc: data?.desc ?? info[1]?.desc,
+        ...(imgURl && { image: imgURl }),
       }),
     })
     toast.success("Message Successfully Added!")

@@ -17,8 +17,8 @@ export async function PUT(req: Request) {
     update: {
       title: body.title ?? "",
       name: body.name ?? "",
-      image: body.image ?? "",
       desc: body.desc ?? "",
+      ...(body.image && { image: body.image }),
     },
     create: {
       key: body.key,
