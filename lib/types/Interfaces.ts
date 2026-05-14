@@ -15,3 +15,41 @@ export interface messageHead {
   image: string
   desc: string
 }
+
+export interface Stuff {
+  id: string
+
+  name: string
+  dob: Date
+
+  designation: string
+  subject?: string
+
+  religion?: string
+
+  mpoIndex?: string
+
+  joinDate?: Date
+
+  email?: string
+  phone: string
+
+  gender?: "MALE" | "FEMALE" | "OTHER"
+
+  eiin?: string
+
+  photo?: string
+
+  classTeacher: boolean
+
+  nidNo?: string
+
+  address?: string
+
+  lastEducation?: string
+
+  instituteSection?: string
+
+  createdAt: Date
+  updatedAt: Date
+}
