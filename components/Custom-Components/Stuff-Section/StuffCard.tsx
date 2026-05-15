@@ -4,6 +4,7 @@ import { Mail, Phone } from "lucide-react"
 import Image from "next/image"
 import React from "react"
 
+
 const StuffCard = ({ stuff }) => {
   return (
     <Card className="flex flex-col items-center gap-4 rounded-xl p-4 shadow-sm md:flex-row">

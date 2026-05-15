@@ -18,38 +18,22 @@ export interface messageHead {
 
 export interface Stuff {
   id: string
-
   name: string
   dob: Date
-
   designation: string
   subject?: string
-
   religion?: string
-
-  mpoIndex?: string
-
-  joinDate?: Date
-
-  email?: string
+  mpoIndex: string
+  joinDate: Date
+  email: string
   phone: string
-
-  gender?: "MALE" | "FEMALE" | "OTHER"
-
-  eiin?: string
-
-  photo?: string
-
-  classTeacher: boolean
-
+  gender: "MALE" | "FEMALE"
+  image: string
+  classTeacher?: string
   nidNo?: string
-
   address?: string
-
   lastEducation?: string
-
-  instituteSection?: string
-
+  instituteSection: "General" | "Vocational"
   createdAt: Date
   updatedAt: Date
 }
