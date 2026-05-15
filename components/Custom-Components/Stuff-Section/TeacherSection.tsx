@@ -9,6 +9,7 @@ import StuffCard from "./StuffCard";
 const teachers = [
   {
     name: "আব্দুল্লাহ আল নোমান",
+    slug : "আব্দুল্লাহ-আল-নোমান",
     role: "সিনিয়র বাংলা শিক্ষক",
     image: "/t1.jpg",
   },

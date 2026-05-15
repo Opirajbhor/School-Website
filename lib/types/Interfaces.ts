@@ -19,6 +19,7 @@ export interface messageHead {
 export interface Stuff {
   id: string
   name: string
+  slug : string
   dob: Date
   designation: string
   subject?: string

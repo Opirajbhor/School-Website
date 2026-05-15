@@ -21,7 +21,7 @@ export default function Navbar() {
     <nav className="border-b bg-background">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         {/* Logo */}
-        <div className="flex items-center gap-3">
+        <Link href={"/"} className="flex items-center gap-3">
           <div className="text-2xl">🌾</div>
           <div>
             <h1 className="text-lg font-semibold">XYZ School & College</h1>
@@ -29,7 +29,7 @@ export default function Navbar() {
               a revolutionary way to educate
             </p>
           </div>
-        </div>
+        </Link>
 
         {/* Desktop Menu (shadcn) */}
         <NavigationMenu className="hidden md:flex">
@@ -60,10 +60,10 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>জনবল</NavigationMenuTrigger>
               <NavigationMenuContent className="w-44 space-y-2 p-2">
-                <Link href="/staff/teachers" legacyBehavior passHref>
+                <Link href="/teachers" legacyBehavior passHref>
                   <NavigationMenuLink>শিক্ষক</NavigationMenuLink>
                 </Link>
-                <Link href="/staff/admin" legacyBehavior passHref>
+                <Link href="/admin" legacyBehavior passHref>
                   <NavigationMenuLink>প্রশাসন</NavigationMenuLink>
                 </Link>
               </NavigationMenuContent>
@@ -77,21 +77,6 @@ export default function Navbar() {
                 </Link>
                 <Link href="/students/admission" legacyBehavior passHref>
                   <NavigationMenuLink>ভর্তি</NavigationMenuLink>
-                </Link>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>পরীক্ষার ফলাফল</NavigationMenuTrigger>
-              <NavigationMenuContent className="w-44 space-y-2 p-2">
-                <Link href="/result/jsc" legacyBehavior passHref>
-                  <NavigationMenuLink>JSC</NavigationMenuLink>
-                </Link>
-                <Link href="/result/ssc" legacyBehavior passHref>
-                  <NavigationMenuLink>SSC</NavigationMenuLink>
-                </Link>
-                <Link href="/result/hsc" legacyBehavior passHref>
-                  <NavigationMenuLink>HSC</NavigationMenuLink>
                 </Link>
               </NavigationMenuContent>
             </NavigationMenuItem>

@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Mail, Phone } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import React from "react"
-
 
 const StuffCard = ({ stuff }) => {
   return (
@@ -41,7 +41,7 @@ const StuffCard = ({ stuff }) => {
 
         {/* Button */}
         <Button variant="outline" className="mt-2">
-          বিস্তারিত →
+          <Link href={`/teachers/${stuff.name}`}>বিস্তারিত →</Link>
         </Button>
       </div>
     </Card>
