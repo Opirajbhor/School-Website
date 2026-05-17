@@ -4,10 +4,6 @@ import Link from "next/link"
 import { useState } from "react"
 import {
   NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu"
 import { Button } from "@/components/ui/button"
@@ -16,6 +12,21 @@ import ModeToggle from "../ui/modeToggle"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+
+  const navLinks = [
+    {
+      href: "/",
+      tittle: "মূলপাতা",
+    },
+    {
+      href: "/teachers",
+      tittle: "শিক্ষকগণ",
+    },
+    {
+      href: "/notices",
+      tittle: "নোটিশসমূহ",
+    },
+  ]
 
   return (
     <nav className="border-b bg-background">
@@ -33,66 +44,18 @@ export default function Navbar() {
 
         {/* Desktop Menu (shadcn) */}
         <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className="rounded-md bg-primary px-4 py-2 text-primary-foreground">
-                  মূলপাতা
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>পরিচিতি</NavigationMenuTrigger>
-              <NavigationMenuContent className="w-44 space-y-2 p-2">
-                <Link href="/about/history" legacyBehavior passHref>
-                  <NavigationMenuLink>ইতিহাস</NavigationMenuLink>
+          <div className="flex items-center gap-3">
+            {navLinks.map((link, i) => (
+              <NavigationMenuLink key={i} asChild>
+                <Link
+                  href={link?.href}
+                  className="rounded-md bg-primary px-4 py-2 text-primary-foreground"
+                >
+                  {link?.tittle}
                 </Link>
-                <Link href="/about/mission" legacyBehavior passHref>
-                  <NavigationMenuLink>মিশন</NavigationMenuLink>
-                </Link>
-                <Link href="/about/principal" legacyBehavior passHref>
-                  <NavigationMenuLink>প্রধান শিক্ষক</NavigationMenuLink>
-                </Link>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>জনবল</NavigationMenuTrigger>
-              <NavigationMenuContent className="w-44 space-y-2 p-2">
-                <Link href="/teachers" legacyBehavior passHref>
-                  <NavigationMenuLink>শিক্ষক</NavigationMenuLink>
-                </Link>
-                <Link href="/admin" legacyBehavior passHref>
-                  <NavigationMenuLink>প্রশাসন</NavigationMenuLink>
-                </Link>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>শিক্ষার্থী</NavigationMenuTrigger>
-              <NavigationMenuContent className="w-44 space-y-2 p-2">
-                <Link href="/students/list" legacyBehavior passHref>
-                  <NavigationMenuLink>তালিকা</NavigationMenuLink>
-                </Link>
-                <Link href="/students/admission" legacyBehavior passHref>
-                  <NavigationMenuLink>ভর্তি</NavigationMenuLink>
-                </Link>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/gallery" legacyBehavior passHref>
-                <NavigationMenuLink>ছবির গ্যালারি</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/contact" legacyBehavior passHref>
-                <NavigationMenuLink>যোগাযোগ</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
+              </NavigationMenuLink>
+            ))}
+          </div>
         </NavigationMenu>
 
         {/* Right */}
