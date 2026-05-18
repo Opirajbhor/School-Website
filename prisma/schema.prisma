@@ -75,7 +75,7 @@ model Staff {
   index       String
   joinDate    DateTime
   comment     String
-  image       String
+  imageUrl    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

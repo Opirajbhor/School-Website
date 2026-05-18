@@ -14,6 +14,24 @@ export async function GET() {
   }
 }
 
+export async function POST(req: Request) {
+  const data: staffDataType = await req.json()
+
+  const info = await prisma.staff.create({
+    data: {
+      name: data?.name,
+      designation: data?.designation,
+      subject: data?.subject,
+      index: data?.index,
+      joinDate: new Date(data?.joinDate),
+      comment: data?.comment,
+      imageUrl: data.imageUrl!,
+    },
+  })
+
+  return NextResponse.json(info)
+}
+
 export async function PUT(req: Request) {
   const data: staffDataType = await req.json()
 
@@ -26,7 +44,7 @@ export async function PUT(req: Request) {
       index: data?.index,
       joinDate: new Date(data.joinDate),
       comment: data?.comment,
-      image: data?.imageUrl,
+      imageUrl: data?.imageUrl,
     },
     create: {
       name: data?.name,
@@ -35,7 +53,7 @@ export async function PUT(req: Request) {
       index: data?.index,
       joinDate: new Date(data.joinDate),
       comment: data?.comment,
-      image: data?.imageUrl,
+      imageUrl: data?.imageUrl,
     },
   })
 
