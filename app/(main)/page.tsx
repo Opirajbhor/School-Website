@@ -17,10 +17,10 @@ export default function Page() {
         <AboutSection></AboutSection>
         <NoticeBoard></NoticeBoard>
       </div>
-      <InstitutionStatistics></InstitutionStatistics>
       <MessageSection></MessageSection>
-      <TeacherSection></TeacherSection>
+      <InstitutionStatistics></InstitutionStatistics>
       <StudentStatistics></StudentStatistics>
+      <TeacherSection></TeacherSection>
       <MediaGallery></MediaGallery>
     </>
   )

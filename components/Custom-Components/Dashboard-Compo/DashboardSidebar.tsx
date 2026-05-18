@@ -20,6 +20,11 @@ const links: dashboardLinks[] = [
     src: "/dashboard/about-school",
     icon: "<School />",
   },
+  {
+    name: "Stuff Management",
+    src: "/dashboard/stuff-management",
+    icon: "<School />",
+  },
 ]
 
 export default function DashboardSidebar() {

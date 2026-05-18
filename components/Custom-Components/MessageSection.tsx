@@ -23,7 +23,6 @@ const messages = await prisma.messageHead.findMany({
   orderBy: { createdAt: "desc" },
 })
 
-console.log(messages)
 
 export default function MessageSection() {
   return (

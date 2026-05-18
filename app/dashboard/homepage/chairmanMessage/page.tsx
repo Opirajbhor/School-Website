@@ -37,7 +37,6 @@ export default function Message() {
       const res = await fetch("/api/message")
       const json = await res.json()
       setInfo(json)
-      console.log(json)
     }
     load()
   }, [])

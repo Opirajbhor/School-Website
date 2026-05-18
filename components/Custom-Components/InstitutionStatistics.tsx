@@ -10,7 +10,6 @@ interface InstitutionStat {
 const infoData = await prisma.statistics.findMany({
   orderBy: { createdAt: "desc" },
 })
-console.log(infoData)
 
 const stats: InstitutionStat[] = [
   {
