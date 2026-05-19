@@ -48,7 +48,6 @@ export default function StuffManagement() {
   }
   // add staff panel open-close
   const [staffPanel, setStaffPanel] = useState(false)
-  console.log(staffPanel)
 
   return (
     <>

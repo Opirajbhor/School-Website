@@ -21,8 +21,13 @@ const links: dashboardLinks[] = [
     icon: "<School />",
   },
   {
-    name: "Stuff Management",
-    src: "/dashboard/stuff-management",
+    name: "Staff Management",
+    src: "/dashboard/staff-management",
+    icon: "<School />",
+  },
+  {
+    name: "Gallary",
+    src: "/dashboard/gallary",
     icon: "<School />",
   },
 ]
