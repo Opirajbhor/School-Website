@@ -4,24 +4,11 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { GallaryGrid } from "./GallaryGrid"
 import { gallaryType } from "@/lib/types/type"
+import { prisma } from "@/lib/prisma/prisma"
 
-const galleryData: gallaryType[] = [
-  {
-    id: "1",
-    tittle: "বিদ্যালয়ের সামনের ছবি",
-    imageUrl: "/api/placeholder/600/400",
-  },
-  {
-    id: "2",
-    tittle: "বিদ্যালয়ের ভিতরের ছবির একাংশ।",
-    imageUrl: "/api/placeholder/600/400",
-  },
-  {
-    id: "3",
-    tittle: "বার্ষিক ক্রীড়া অনুষ্ঠানের ছবির একাংশ",
-    imageUrl: "/api/placeholder/600/400",
-  },
-]
+const galleryData: gallaryType[] = await prisma.gallary.findMany({
+  orderBy: { createdAt: "desc" },
+})
 
 const MediaGallery = () => {
   return (
@@ -42,13 +29,15 @@ const MediaGallery = () => {
 
         {/* Action Button */}
         <div className="flex justify-center">
-          <Button
-            variant="secondary"
-            className="group h-auto rounded-md bg-accent px-8 py-6 text-base text-accent-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
-          >
-            <Link href={"/gallary"}>আরো দেখুন</Link>
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Button>
+          <Link href={"/gallary"}>
+            <Button
+              variant="secondary"
+              className="group h-auto rounded-md bg-accent px-8 py-6 text-base text-accent-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+            >
+              আরো দেখুন
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

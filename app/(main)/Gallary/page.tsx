@@ -2,7 +2,9 @@ import { GallaryGrid } from "@/components/Custom-Components/GallaryGrid"
 import { prisma } from "@/lib/prisma/prisma"
 import { gallaryType } from "@/lib/types/type"
 
-const galleryData: gallaryType[] = await prisma.gallary.findMany()
+const galleryData: gallaryType[] = await prisma.gallary.findMany({
+  orderBy: { createdAt: "desc" },
+})
 
 export default function GallaryPage() {
   return (
