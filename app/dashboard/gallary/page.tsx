@@ -13,6 +13,7 @@ import { useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
 import { useQuery } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
+import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
 
 export default function Gallary() {
   const { register, handleSubmit } = useForm<gallaryType>()
@@ -40,24 +41,29 @@ export default function Gallary() {
       return toast.error("image file is required")
     }
     const imgURl = await uploadImage(imageFile)
-
-    const res = await fetch("/api/gallary", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...data,
-        imageUrl: imgURl!,
-      }),
+    const res = await api.post("/gallary", {
+      ...data,
+      imageUrl: imgURl,
     })
     toast.success("Photo Successfully Added!")
 
     window.location.reload()
   }
   // delete function
-  const handleDelete = (id: number) => {
-    console.log("Delete:", id)
+  const handleDelete = async (id: string) => {
+    const res = await api.delete("/gallary", {
+      data: id,
+    })
+    window.location.reload()
+  }
+
+  // isLoading
+  if (isLoading) {
+    return LoadingSpinner
+  }
+  // error
+  if (error) {
+    return <h1>Data Fetching Error</h1>
   }
 
   return (

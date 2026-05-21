@@ -20,3 +20,23 @@ export async function POST(req: Request) {
 
   return NextResponse.json(info)
 }
+
+export async function DELETE(req: Request) {
+  try {
+    const body = await req.json()
+
+    const info = await prisma.gallary.delete({
+      where: {
+        id: body,
+      },
+    })
+    return NextResponse.json(info)
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      { message: "Failed to delete gallery item" },
+      { status: 500 }
+    )
+  }
+}
