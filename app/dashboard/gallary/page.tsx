@@ -1,5 +1,4 @@
 "use client"
-
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { gallaryType } from "@/lib/types/type"
@@ -7,68 +6,54 @@ import { Button } from "@/components/ui/button"
 import { Trash2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
-import toast from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
-
-const galleryData: gallaryType[] = [
-  {
-    id: "1",
-    imageUrl: "/gallery1.jpg",
-    tittle: "বার্ষিক ক্রীড়া অনুষ্ঠান",
-  },
-  {
-    id: "2",
-    imageUrl: "/gallery2.jpg",
-    tittle: "শহীদ দিবস পালন",
-  },
-  {
-    id: "3",
-    imageUrl: "/gallery3.jpg",
-    tittle: "বিজ্ঞান মেলা",
-  },
-  {
-    id: "4",
-    imageUrl: "/gallery4.jpg",
-    tittle: "শিক্ষা সফর",
-  },
-  {
-    id: "5",
-    imageUrl: "/gallery5.jpg",
-    tittle: "সাংস্কৃতিক অনুষ্ঠান",
-  },
-  {
-    id: "6",
-    imageUrl: "/gallery6.jpg",
-    tittle: "পুরস্কার বিতরণী",
-  },
-]
+import { useQuery } from "@tanstack/react-query"
+import { api } from "@/lib/axios/axios"
 
 export default function Gallary() {
   const { register, handleSubmit } = useForm<gallaryType>()
   const [preview, setPreview] = useState<string | null>(null)
   const [gallaryPanel, setStaffPanel] = useState(false)
 
+  // Gallary Data Fetch
+  const {
+    data: galleryData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["getGallary"],
+
+    queryFn: async () => {
+      const res = await api.get("/gallary")
+      return res.data
+    },
+  })
+
   //   submit button function
   const onSubmit = async (data: gallaryType) => {
-    const imgURl = await uploadImage(data?.image[0])
+    const imageFile = data.image?.[0]
+    if (!imageFile) {
+      return toast.error("image file is required")
+    }
+    const imgURl = await uploadImage(imageFile)
 
-    // const res = await fetch("/api/gallary", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     ...data,
-    //     imageUrl: imgURl!,
-    //   }),
-    // })
-    // toast.success("Photo Successfully Added!")
+    const res = await fetch("/api/gallary", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        imageUrl: imgURl!,
+      }),
+    })
+    toast.success("Photo Successfully Added!")
 
-    // window.location.reload()
-    console.log(data)
+    window.location.reload()
   }
   // delete function
   const handleDelete = (id: number) => {
@@ -170,6 +155,7 @@ export default function Gallary() {
           </Card>
         ))}
       </div>
+      <Toaster />
     </div>
   )
 }

@@ -2,10 +2,10 @@ import { prisma } from "@/lib/prisma/prisma"
 import { NextResponse } from "next/server"
 
 export async function GET() {
-  const notices = await prisma.gallary.findMany({
+  const data = await prisma.gallary.findMany({
     orderBy: { createdAt: "desc" },
   })
-  return NextResponse.json(notices)
+  return NextResponse.json(data)
 }
 
 export async function POST(req: Request) {
