@@ -23,7 +23,7 @@ const StudentStatistics = () => {
           <h2 className="text-2xl font-bold whitespace-nowrap text-foreground">
             ছাত্র/ছাত্রীদের পরিসংখ্যান
           </h2>
-          <div className="h-[1px] w-full bg-border" />
+          <div className="h-px w-full bg-border" />
         </div>
 
         {/* Statistics Grid */}

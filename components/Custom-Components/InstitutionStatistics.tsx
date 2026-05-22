@@ -48,7 +48,7 @@ const InstitutionStatistics = () => {
           <h2 className="text-2xl font-bold whitespace-nowrap text-foreground">
             প্রতিষ্ঠানের পরিসংখ্যান
           </h2>
-          <div className="h-[1px] w-full bg-border" />
+          <div className="h-px w-full bg-border" />
         </div>
 
         {/* Stats Grid */}

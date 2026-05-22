@@ -5,14 +5,14 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 
-const StuffCard = ({ stuff }) => {
+const StaffCard = ({ staff }) => {
   return (
     <Card className="flex flex-col items-center gap-4 rounded-xl p-4 shadow-sm md:flex-row">
       {/* Image */}
       <div className="relative h-40 w-40 overflow-hidden rounded-xl">
         <Image
-          src={stuff.image}
-          alt={stuff.name}
+          src={staff.imageUrl}
+          alt={staff.name}
           fill
           className="object-cover"
         />
@@ -20,32 +20,22 @@ const StuffCard = ({ stuff }) => {
 
       {/* Info */}
       <div className="flex-1 space-y-2">
-        <h3 className="text-lg font-semibold">{stuff.name}</h3>
-        <p className="text-sm text-muted-foreground">({stuff.role})</p>
+        <h3 className="text-lg font-semibold">{staff.name}</h3>
+        <p className="text-sm text-muted-foreground">({staff.designation})</p>
 
         {/* Icons */}
         <div className="flex gap-2 pt-2">
-          <Button size="icon" variant="secondary">
-            <Phone size={16} />
-          </Button>
-          <Button size="icon" variant="secondary">
-            <Mail size={16} />
-          </Button>
-          <Button size="icon" variant="secondary">
-            <Mail size={16} />
-          </Button>
-          <Button size="icon" variant="secondary">
-            <Mail size={16} />
-          </Button>
+          <Phone size={16} />
+          <p>{staff?.Phone}</p>
         </div>
 
         {/* Button */}
         <Button variant="outline" className="mt-2">
-          <Link href={`/teachers/${stuff.name}`}>বিস্তারিত →</Link>
+          <Link href={`/teachers/${staff.name}`}>বিস্তারিত →</Link>
         </Button>
       </div>
     </Card>
   )
 }
 
-export default StuffCard
+export default StaffCard
