@@ -3,7 +3,7 @@ import localFont from "next/font/local" // 1. Import this
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
-import QueryProvider from "@/lib/tanStack/queryProvider"
+import Providers from "@/lib/providers/persisQueryProvider"
 
 // Google Fonts
 const manropeHeading = Manrope({
@@ -38,7 +38,8 @@ export default function RootLayout({
     >
       <body className="font-shadhinata mx-auto w-full max-w-7xl font-sans">
         <ThemeProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <Providers>{children}
+          </Providers>
         </ThemeProvider>
       </body>
     </html>

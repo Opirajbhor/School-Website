@@ -1,31 +1,16 @@
-"use client"
-
 import Link from "next/link"
-import { useState } from "react"
 import {
   NavigationMenu,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu"
 import { Button } from "@/components/ui/button"
-import { Menu } from "lucide-react"
 import ModeToggle from "../ui/modeToggle"
-import { useQuery } from "@tanstack/react-query"
-import { api } from "@/lib/axios/axios"
 import Image from "next/image"
+import { prisma } from "@/lib/prisma/prisma"
 
+// Logo and name Data Fetch
+const logoName = await prisma.logoName.findFirst()
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
-
-  // Logo and name Data Fetch
-  const { data: logoName } = useQuery({
-    queryKey: ["getGallary"],
-
-    queryFn: async () => {
-      const res = await api.get("/logo-name")
-      return res.data
-    },
-  })
-
   const navLinks = [
     {
       href: "/",
@@ -77,7 +62,7 @@ export default function Navbar() {
               <NavigationMenuLink key={i} asChild>
                 <Link
                   href={link?.href}
-                  className="rounded-md bg-primary px-4 py-2 text-primary-foreground"
+                  className="block text-2xl text-muted-foreground duration-150 hover:text-accent-foreground"
                 >
                   {link?.tittle}
                 </Link>
@@ -91,15 +76,6 @@ export default function Navbar() {
           <ModeToggle></ModeToggle>
           <Button className="hidden md:flex">
             <Link href={"/dashboard"}>Login</Link>
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setOpen(!open)}
-          >
-            <Menu />
           </Button>
         </div>
       </div>

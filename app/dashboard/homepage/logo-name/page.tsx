@@ -9,12 +9,13 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useEffect, useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
 import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { Spinner } from "@/components/ui/spinner"
 
 export default function LogoName() {
+  const queryClient = useQueryClient()
   const { register, handleSubmit } = useForm<logoName>()
 
   // Logo and Name Data Fetch
@@ -47,6 +48,10 @@ export default function LogoName() {
       name: data?.name,
       slogan: data?.slogan,
       imageUrl: imgURl,
+    })
+    // refetch updated data
+    await queryClient.invalidateQueries({
+      queryKey: ["logoName"],
     })
     toast.success(" Successfully Changed")
 
