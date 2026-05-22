@@ -4,6 +4,11 @@ import Link from "next/link"
 export default function HomepageCustomization() {
   const tabs = [
     {
+      link: "/dashboard/homepage/logo-name",
+      name: "Logo and Name",
+      icon: "",
+    },
+    {
       link: "/dashboard/homepage/banner",
       name: "Banner",
       icon: "",

@@ -9,9 +9,22 @@ import {
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
 import ModeToggle from "../ui/modeToggle"
+import { useQuery } from "@tanstack/react-query"
+import { api } from "@/lib/axios/axios"
+import Image from "next/image"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+
+  // Logo and name Data Fetch
+  const { data: logoName } = useQuery({
+    queryKey: ["getGallary"],
+
+    queryFn: async () => {
+      const res = await api.get("/logo-name")
+      return res.data
+    },
+  })
 
   const navLinks = [
     {
@@ -37,13 +50,24 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         {/* Logo */}
         <Link href={"/"} className="flex items-center gap-3">
-          <div className="text-2xl">🌾</div>
-          <div>
-            <h1 className="text-lg font-semibold">XYZ School & College</h1>
-            <p className="text-xs text-muted-foreground">
-              a revolutionary way to educate
-            </p>
-          </div>
+          {logoName && (
+            <>
+              <div className="text-2xl">
+                <Image
+                  src={logoName.imageUrl}
+                  width={50}
+                  height={50}
+                  alt="logo"
+                ></Image>
+              </div>
+              <div>
+                <h1 className="text-lg font-semibold">{logoName?.name}</h1>
+                <p className="text-xs text-muted-foreground">
+                  {logoName?.slogan}
+                </p>
+              </div>
+            </>
+          )}
         </Link>
 
         {/* Desktop Menu (shadcn) */}

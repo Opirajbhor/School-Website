@@ -15,6 +15,11 @@ import { useQuery } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
 import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
 
+type singleType = {
+  id: string
+  tittle: string
+  imageUrl: string
+}
 export default function Gallary() {
   const { register, handleSubmit } = useForm<gallaryType>()
   const [preview, setPreview] = useState<string | null>(null)
@@ -127,7 +132,7 @@ export default function Gallary() {
         বিদ্যালয়ের বিভিন্ন কার্যক্রমের কিছু মুহূর্ত
       </p>
       <div className="ml-5 grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-        {galleryData?.map((item) => (
+        {galleryData?.map((item: singleType) => (
           <Card
             key={item?.id}
             className="group cursor-pointer overflow-hidden rounded-2xl border transition-all duration-300 hover:shadow-lg"

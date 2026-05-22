@@ -19,7 +19,8 @@ export type gallaryType = {
 
 export type logoName = {
   id?: string
-  tittle: string
+  name?: string
+  slogan?: string
   image?: FileList
-  imageUrl: string
+  imageUrl?: string
 }
