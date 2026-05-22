@@ -19,6 +19,10 @@ export default function Navbar() {
       tittle: "মূলপাতা",
     },
     {
+      href: "/about-school",
+      tittle: "বিদ্যালয় সম্পর্কে",
+    },
+    {
       href: "/teachers",
       tittle: "শিক্ষকগণ",
     },

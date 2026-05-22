@@ -7,6 +7,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// model Logo and Name
+model logoName {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 // School-info Model
 model schoolInfo {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId

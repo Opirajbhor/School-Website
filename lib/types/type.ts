@@ -16,3 +16,10 @@ export type gallaryType = {
   image?: FileList
   imageUrl: string
 }
+
+export type logoName = {
+  id?: string
+  tittle: string
+  image?: FileList
+  imageUrl: string
+}
