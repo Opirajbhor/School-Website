@@ -4,7 +4,7 @@ import NoticeBoard from "@/Custom-Components/NoticeSection"
 import MessageSection from "@/Custom-Components/MessageSection"
 import TeacherSection from "@/Custom-Components/Stuff-Section/TeacherSection"
 import StudentStatistics from "@/Custom-Components/StudentStatistics"
-import MediaGallery from "@/Custom-Components/GallarySection"
+import MediaGallery from "@/Custom-Components/GallerySection"
 import InstitutionStatistics from "@/Custom-Components/InstitutionStatistics"
 
 export default function Page() {

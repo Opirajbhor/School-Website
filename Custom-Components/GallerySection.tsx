@@ -2,11 +2,11 @@ import React from "react"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { GallaryGrid } from "./GallaryGrid"
-import { gallaryType } from "@/lib/types/type"
+import { GalleryGrid } from "./GalleryGrid"
+import { galleryType } from "@/lib/types/type"
 import { prisma } from "@/lib/prisma/prisma"
 
-const galleryData: gallaryType[] = await prisma.gallary.findMany({
+const galleryData: galleryType[] = await prisma.gallery.findMany({
   orderBy: { createdAt: "desc" },
 })
 
@@ -25,11 +25,11 @@ const MediaGallery = () => {
         </div>
 
         {/* Gallery Grid */}
-        <GallaryGrid galleryData={galleryData}></GallaryGrid>
+        <GalleryGrid galleryData={galleryData}></GalleryGrid>
 
         {/* Action Button */}
         <div className="flex justify-center">
-          <Link href={"/gallary"}>
+          <Link href={"/gallery"}>
             <Button
               variant="secondary"
               className="group h-auto rounded-md bg-accent px-8 py-6 text-base text-accent-foreground transition-colors hover:bg-primary hover:text-primary-foreground"

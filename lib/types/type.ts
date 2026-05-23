@@ -10,7 +10,7 @@ export type staffDataType = {
   imageUrl: string
 }
 
-export type gallaryType = {
+export type galleryType = {
   id?: string
   tittle: string
   image?: FileList

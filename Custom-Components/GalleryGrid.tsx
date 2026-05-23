@@ -1,14 +1,14 @@
 import React from "react"
 import Image from "next/image"
-import { gallaryType } from "@/lib/types/type"
+import { galleryType } from "@/lib/types/type"
 
 type GalleryGridProps = {
-  galleryData: gallaryType[]
+  galleryData: galleryType[]
 }
-export function GallaryGrid({ galleryData }: GalleryGridProps) {
+export function GalleryGrid({ galleryData }: GalleryGridProps) {
   return (
     <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {galleryData?.map((item: gallaryType) => (
+      {galleryData?.map((item: galleryType) => (
         <div
           key={item?.id}
           className="group shadow-soft relative aspect-4/3 overflow-hidden rounded-xl bg-muted transition-all duration-300 hover:shadow-xl"

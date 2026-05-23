@@ -1,4 +1,4 @@
-import { GallaryGrid } from "@/Custom-Components/GallaryGrid"
+import { GallaryGrid } from "@/Custom-Components/GalleryGrid"
 import { prisma } from "@/lib/prisma/prisma"
 import { gallaryType } from "@/lib/types/type"
 

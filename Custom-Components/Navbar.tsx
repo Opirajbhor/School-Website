@@ -28,6 +28,10 @@ export default function Navbar() {
       href: "/notices",
       tittle: "নোটিশসমূহ",
     },
+    {
+      href: "/gallery",
+      tittle: "গ্যালারী",
+    },
   ]
 
   return (
