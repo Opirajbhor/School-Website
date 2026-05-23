@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import toast, { Toaster } from "react-hot-toast"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import Image from "next/image"
-import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 
 export default function AboutSchool() {
   const [info, setInfo] = useState(null)

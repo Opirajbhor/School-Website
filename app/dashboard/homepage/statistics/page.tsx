@@ -1,5 +1,5 @@
 "use client"
-import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"

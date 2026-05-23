@@ -8,7 +8,7 @@ import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { staffDataType } from "@/lib/types/type"
-import StaffTable from "@/components/Custom-Components/Stuff-Section/StaffTable"
+import StaffTable from "@/Custom-Components/Stuff-Section/StaffTable"
 import { useEffect, useState } from "react"
 
 export default function StuffManagement() {

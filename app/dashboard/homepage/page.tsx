@@ -1,4 +1,4 @@
-import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import Link from "next/link"
 
 export default function HomepageCustomization() {
@@ -35,7 +35,7 @@ export default function HomepageCustomization() {
       <div>
         <h1 className="my-5 text-center underline">Homepage Customization</h1>
       </div>
-      <div className="flex gap-5">
+      <div className="grid grid-cols-4 gap-5">
         {tabs.map((tab, index) => (
           <Link
             key={index}

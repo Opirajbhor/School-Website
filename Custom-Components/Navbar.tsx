@@ -4,7 +4,7 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu"
 import { Button } from "@/components/ui/button"
-import ModeToggle from "../ui/modeToggle"
+import ModeToggle from "../components/ui/modeToggle"
 import Image from "next/image"
 import { prisma } from "@/lib/prisma/prisma"
 
@@ -75,7 +75,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <ModeToggle></ModeToggle>
           <Button className="hidden md:flex">
-            <Link href={"/dashboard"}>Login</Link>
+            <Link href={"/dashboard/homepage"}>Login</Link>
           </Button>
         </div>
       </div>

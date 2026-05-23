@@ -1,11 +1,11 @@
-import HeroSlider from "@/components/Custom-Components/HeroSection"
-import AboutSection from "@/components/Custom-Components/aboutSchool"
-import NoticeBoard from "@/components/Custom-Components/NoticeSection"
-import MessageSection from "@/components/Custom-Components/MessageSection"
-import TeacherSection from "@/components/Custom-Components/Stuff-Section/TeacherSection"
-import StudentStatistics from "@/components/Custom-Components/StudentStatistics"
-import MediaGallery from "@/components/Custom-Components/GallarySection"
-import InstitutionStatistics from "@/components/Custom-Components/InstitutionStatistics"
+import HeroSlider from "@/Custom-Components/HeroSection"
+import AboutSection from "@/Custom-Components/aboutSchool"
+import NoticeBoard from "@/Custom-Components/NoticeSection"
+import MessageSection from "@/Custom-Components/MessageSection"
+import TeacherSection from "@/Custom-Components/Stuff-Section/TeacherSection"
+import StudentStatistics from "@/Custom-Components/StudentStatistics"
+import MediaGallery from "@/Custom-Components/GallarySection"
+import InstitutionStatistics from "@/Custom-Components/InstitutionStatistics"
 
 export default function Page() {
   return (

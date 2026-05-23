@@ -1,6 +1,8 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/prisma/prisma"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 //   fetch data
 const info = await prisma.aboutSchool.findFirst()
@@ -12,7 +14,7 @@ export default function AboutSection() {
         {/* Image */}
         <div className="relative h-[450px] w-full overflow-hidden rounded-xl md:w-[60%]">
           <Image
-            src={info?.imageUrl || '/logo.png'}
+            src={info?.imageUrl || "/logo.png"}
             alt="school"
             fill
             className="object-cover"
@@ -32,8 +34,11 @@ export default function AboutSection() {
             <p className="text-sm leading-relaxed text-muted-foreground">
               {info?.description}
             </p>
-
-            <Button>বিস্তারিত পড়ুন</Button>
+            <Link href={"/about-school"}>
+              <Button>
+                বিস্তারিত পড়ুন <ArrowRight />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

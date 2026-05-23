@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import StaffCard from "./StuffCard"
 import { prisma } from "@/lib/prisma/prisma"
+import Link from "next/link"
 
 // const teachers = [
 //   {
@@ -46,9 +47,9 @@ export default function TeacherSection() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 flex justify-center">
+        <Link href={"/teachers"} className="mt-8 flex justify-center">
           <Button>সকল শিক্ষকবৃন্দ →</Button>
-        </div>
+        </Link>
       </div>
     </section>
   )

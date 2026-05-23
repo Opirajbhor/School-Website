@@ -11,7 +11,7 @@ import { useEffect, useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
-import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { Spinner } from "@/components/ui/spinner"
 
 export default function LogoName() {

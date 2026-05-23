@@ -13,7 +13,7 @@ import { useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
 import { useQuery } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
-import LoadingSpinner from "@/components/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 
 type singleType = {
   id: string

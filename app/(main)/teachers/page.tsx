@@ -1,130 +1,25 @@
-import StuffCard from "@/components/Custom-Components/Stuff-Section/StuffCard"
+import StuffCard from "@/Custom-Components/Stuff-Section/StuffCard"
+import { prisma } from "@/lib/prisma/prisma"
 import React from "react"
 
+const teachers = await prisma.staff.findMany({
+  orderBy: { createdAt: "desc" },
+})
 const Teachers = () => {
-  const teachers = [
-    {
-      name: "আব্দুল্লাহ আল নোমান",
-      role: "সিনিয়র বাংলা শিক্ষক",
-      image: "/t1.jpg",
-    },
-    {
-      name: "মাহবুব সরকার",
-      role: "সিনিয়র ইংরেজি শিক্ষক",
-      image: "/t2.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-    {
-      name: "সোনিয়া আক্তার",
-      role: "গণিত শিক্ষিকা",
-      image: "/t3.jpg",
-    },
-    {
-      name: "তাসনিম জারা শাওন",
-      role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-      image: "/t4.jpg",
-    },
-  ]
   return (
     <div>
       {/* Header */}
-      <h2 className="my-8 text-center text-2xl font-bold md:text-3xl">
-        স্কুল শিক্ষক মন্ডলী
-      </h2>
+      <div className="my-8 flex flex-col items-center">
+        <h2 className=" text-center text-2xl font-bold md:text-3xl">
+          স্কুল শিক্ষক মন্ডলী
+        </h2>
+        <div className="mt-1 h-1 w-70 rounded-full bg-primary" />
+      </div>
 
       {/* Grid */}
       <div className="grid gap-6 md:grid-cols-3">
         {teachers.map((teacher, i) => (
-          <StuffCard stuff={teacher} key={i} />
+          <StuffCard staff={teacher} key={i} />
         ))}
       </div>
     </div>

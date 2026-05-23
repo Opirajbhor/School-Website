@@ -6,7 +6,6 @@ import Link from "next/link"
 
 const notices = await prisma.notice.findMany({
   orderBy: { createdAt: "desc" },
-  take: 5,
 })
 
 export default function NoticeBoard() {
@@ -16,7 +15,7 @@ export default function NoticeBoard() {
         {/* Header */}
         <div className="mb-6 flex items-center justify-center gap-2">
           <Megaphone className="text-destructive" />
-          <h2 className="text-2xl font-bold">নোটিশ বোর্ড</h2>
+          <h2 className="text-2xl font-bold">সকল নোটিশ সমূহ</h2>
         </div>
 
         {/* Notices */}
@@ -26,23 +25,25 @@ export default function NoticeBoard() {
               key={i}
               className="flex flex-row items-center justify-between rounded-xl p-4 shadow-sm"
             >
-              <p className="text-sm font-medium">{notice.title}</p>
+              <div className="flex gap-2">
+                <p>{i + 1}. </p>
+                <p className="text-sm font-medium">{notice.title}</p>
+              </div>
 
-              <Link
-                href={`/notices/${notice.id}`}
-                className={buttonVariants({ variant: "secondary", size: "sm" })}
-              >
-                বিস্তারিত
-              </Link>
+              <div className="flex items-center gap-5">
+                <p>{notice?.createdAt.toDateString()}</p>
+                <Link
+                  href={`/notices/${notice.id}`}
+                  className={buttonVariants({
+                    variant: "secondary",
+                    size: "sm",
+                  })}
+                >
+                  বিস্তারিত
+                </Link>
+              </div>
             </Card>
           ))}
-        </div>
-
-        {/* Bottom Button */}
-        <div className="mt-6 flex justify-center">
-          <Button className="gap-2">
-            সকল নোটিশ <ArrowRight size={16} />
-          </Button>
         </div>
       </div>
     </section>

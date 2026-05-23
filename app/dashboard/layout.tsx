@@ -1,5 +1,5 @@
-import HeaderDashboard from "@/components/Custom-Components/Dashboard-Compo/Header"
-import DashboardSidebar from "@/components/Custom-Components/Dashboard-Compo/DashboardSidebar"
+import HeaderDashboard from "@/Custom-Components/Dashboard-Compo/Header"
+import DashboardSidebar from "@/Custom-Components/Dashboard-Compo/DashboardSidebar"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { ReactNode } from "react"
 type Props = {

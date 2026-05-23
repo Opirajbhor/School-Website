@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Quote } from "lucide-react"
 import { prisma } from "@/lib/prisma/prisma"
+import Link from "next/link"
 
 // const messages = [
 //   {
@@ -23,7 +24,6 @@ const messages = await prisma.messageHead.findMany({
   orderBy: { createdAt: "desc" },
 })
 
-
 export default function MessageSection() {
   return (
     <section className="w-full bg-background py-16">
@@ -33,15 +33,6 @@ export default function MessageSection() {
           <h2 className="text-2xl font-bold md:text-3xl">
             স্কুল পরিচালকদের বাণী
           </h2>
-
-          <div className="flex gap-2">
-            <Button variant="outline" size="icon">
-              ‹
-            </Button>
-            <Button variant="outline" size="icon">
-              ›
-            </Button>
-          </div>
         </div>
 
         {/* Cards */}
@@ -79,9 +70,11 @@ export default function MessageSection() {
               </p>
 
               {/* Button */}
-              <Button variant="secondary" className="mt-2">
-                আরো পড়ুন →
-              </Button>
+              <Link href={'/message'}>
+                <Button variant="secondary" className="mt-2">
+                  আরো পড়ুন →
+                </Button>
+              </Link>
             </Card>
           ))}
         </div>
