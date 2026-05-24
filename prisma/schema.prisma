@@ -64,7 +64,7 @@ model statistics {
   updatedAt DateTime @updatedAt
 }
 
-// Model Message Secttion
+// Model Message Section
 model messageHead {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   key       String   @unique

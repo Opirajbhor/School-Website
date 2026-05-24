@@ -1,7 +1,7 @@
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { prisma } from "@/lib/prisma/prisma"
-import { Megaphone, AlertCircle, ArrowRight } from "lucide-react"
+import { Megaphone } from "lucide-react"
 import Link from "next/link"
 
 const notices = await prisma.notice.findMany({

@@ -7,11 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/prisma/prisma"
-import Link from "next/link"
 import { SquarePen, Trash } from "lucide-react"
+import AddNotice from "./add-notice/addNotice"
 
 const data = await prisma.notice.findMany({
   orderBy: { createdAt: "desc" },
@@ -21,10 +19,8 @@ export default function NoticesDashboard() {
   return (
     <div>
       <h1 className="my-5 text-center text-2xl">All Notices ({data.length})</h1>
-      <div className="my-5 flex gap-2">
-        <Button className="item-right">
-          <Link href={"/dashboard/notices/add-notice"}>Add Notice</Link>
-        </Button>
+      <div className="my-3">
+        <AddNotice></AddNotice>
       </div>
       <div className="rounded-xl border bg-card">
         <Table>

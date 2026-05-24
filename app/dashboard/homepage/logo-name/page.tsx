@@ -1,18 +1,18 @@
 "use client"
 import Image from "next/image"
-import { gallaryType, logoName } from "@/lib/types/type"
+import { galleryType, logoName } from "@/lib/types/type"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import toast, { Toaster } from "react-hot-toast"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { useEffect, useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { Spinner } from "@/components/ui/spinner"
+import { useState } from "react"
 
 export default function LogoName() {
   const queryClient = useQueryClient()
@@ -97,7 +97,7 @@ export default function LogoName() {
 
         <div>
           <textarea
-            className="h-auto min-h-[200px] w-full resize-none overflow-auto rounded-2xl border-2 border-black p-3"
+            className="h-auto min-h-50 w-full resize-none overflow-auto rounded-2xl border-2 border-black p-3"
             {...register("slogan")}
             placeholder="slogan"
             defaultValue={logoName?.slogan}

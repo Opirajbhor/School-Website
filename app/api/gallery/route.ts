@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma/prisma"
 import { NextResponse } from "next/server"
 
 export async function GET() {
-  const data = await prisma.gallary.findMany({
+  const data = await prisma.gallery.findMany({
     orderBy: { createdAt: "desc" },
   })
   return NextResponse.json(data)
@@ -11,7 +11,7 @@ export async function GET() {
 export async function POST(req: Request) {
   const body = await req?.json()
 
-  const info = await prisma.gallary.create({
+  const info = await prisma.gallery.create({
     data: {
       tittle: body?.tittle,
       imageUrl: body?.imageUrl,
@@ -25,7 +25,7 @@ export async function DELETE(req: Request) {
   try {
     const body = await req.json()
 
-    const info = await prisma.gallary.delete({
+    const info = await prisma.gallery.delete({
       where: {
         id: body,
       },

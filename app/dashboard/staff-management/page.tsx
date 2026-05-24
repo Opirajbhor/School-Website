@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { staffDataType } from "@/lib/types/type"
 import StaffTable from "@/Custom-Components/Stuff-Section/StaffTable"
 import { useEffect, useState } from "react"
+import { ChevronDown, ChevronUp } from "lucide-react"
 
 export default function StuffManagement() {
   const { register, handleSubmit } = useForm<staffDataType>()
@@ -65,7 +66,7 @@ export default function StuffManagement() {
             }}
             className="mb-5 ml-5"
           >
-            Add Staff
+            Add Staff {staffPanel ? <ChevronUp /> : <ChevronDown />}
           </Button>
         </div>
         {/* Add teacher */}

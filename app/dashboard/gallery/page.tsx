@@ -1,15 +1,15 @@
 "use client"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
-import { gallaryType } from "@/lib/types/type"
+import { galleryType } from "@/lib/types/type"
 import { Button } from "@/components/ui/button"
-import { Trash2 } from "lucide-react"
+import { ChevronDown, ChevronUp, Trash2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import toast, { Toaster } from "react-hot-toast"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
 import { useQuery } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
@@ -20,33 +20,44 @@ type singleType = {
   tittle: string
   imageUrl: string
 }
-export default function Gallary() {
-  const { register, handleSubmit } = useForm<gallaryType>()
+export default function Gallery() {
+  const { register, handleSubmit } = useForm<galleryType>()
   const [preview, setPreview] = useState<string | null>(null)
-  const [gallaryPanel, setStaffPanel] = useState(false)
+  const [panel, setPanel] = useState(false)
 
-  // Gallary Data Fetch
+  // Gallery Data Fetch
   const {
     data: galleryData,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["getGallary"],
-
+    queryKey: ["Gallery"],
     queryFn: async () => {
-      const res = await api.get("/gallary")
+      const res = await api.get("/gallery")
+      console.log(res.data)
+      console.log("res")
+
       return res.data
     },
   })
+  //   fetch data
+  useEffect(() => {
+    async function load() {
+      const res = await api.get("/gallery")
+      console.log(res.data)
+    }
+
+    load()
+  }, [])
 
   //   submit button function
-  const onSubmit = async (data: gallaryType) => {
+  const onSubmit = async (data: galleryType) => {
     const imageFile = data.image?.[0]
     if (!imageFile) {
       return toast.error("image file is required")
     }
     const imgURl = await uploadImage(imageFile)
-    const res = await api.post("/gallary", {
+    const res = await api.post("/gallery", {
       ...data,
       imageUrl: imgURl,
     })
@@ -56,7 +67,7 @@ export default function Gallary() {
   }
   // delete function
   const handleDelete = async (id: string) => {
-    const res = await api.delete("/gallary", {
+    const res = await api.delete("/gallery", {
       data: id,
     })
     window.location.reload()
@@ -74,22 +85,22 @@ export default function Gallary() {
   return (
     <div>
       <div className="mb-10">
-        <h1 className="text-center text-2xl underline">Gallary Section</h1>
+        <h1 className="text-center text-2xl underline">Gallery Section</h1>
       </div>
       {/* panel */}
       <div>
         <Button
           onClick={(e) => {
             e.preventDefault()
-            setStaffPanel(!gallaryPanel)
+            setPanel(!panel)
           }}
           className="mb-5 ml-5"
         >
-          Add Photo
+          Add Photo {panel ? <ChevronUp /> : <ChevronDown />}
         </Button>
       </div>
       {/* form */}
-      {gallaryPanel && (
+      {panel && (
         <form onSubmit={handleSubmit(onSubmit)} className="ml-5 w-200">
           {/* full name */}
           <div className="mb-5 space-y-2">
@@ -156,7 +167,7 @@ export default function Gallary() {
                 <Button
                   size="icon"
                   variant="destructive"
-                  className="h-4 w-4 text-white hover:text-red-500"
+                  className="h-4 w-4 text-red-400  hover:text-red-500"
                   onClick={() => handleDelete(item?.id)}
                 >
                   <Trash2 className="h-4 w-4" />
