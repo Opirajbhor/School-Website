@@ -34,8 +34,6 @@ export default function Gallery() {
     queryKey: ["Gallery"],
     queryFn: async () => {
       const res = await api.get("/gallery")
-      console.log(res.data)
-      console.log("res")
 
       return res.data
     },
@@ -44,7 +42,6 @@ export default function Gallery() {
   useEffect(() => {
     async function load() {
       const res = await api.get("/gallery")
-      console.log(res.data)
     }
 
     load()

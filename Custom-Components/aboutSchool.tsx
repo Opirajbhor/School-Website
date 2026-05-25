@@ -9,10 +9,10 @@ const info = await prisma.aboutSchool.findFirst()
 
 export default function AboutSection() {
   return (
-    <section className="w-full bg-background py-16">
+    <section className="w-full bg-background">
       <div className="relative mx-auto max-w-7xl px-4">
         {/* Image */}
-        <div className="relative h-[450px] w-full overflow-hidden rounded-xl md:w-[60%]">
+        <div className="relative h-112.5 w-full overflow-hidden rounded-xl md:w-[60%]">
           <Image
             src={info?.imageUrl || "/logo.png"}
             alt="school"
@@ -21,7 +21,7 @@ export default function AboutSection() {
           />
 
           {/* dark overlay bottom */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
         </div>
 
         {/* Card */}

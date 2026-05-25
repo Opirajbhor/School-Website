@@ -1,3 +1,5 @@
+import { Component, JSX } from "react"
+
 export interface heroData {
   src: string
   tittle: string
@@ -6,7 +8,7 @@ export interface heroData {
 export interface dashboardLinks {
   name: string
   src: string
-  icon: string
+  icon?: JSX.Element
 }
 
 export interface messageHead {
@@ -19,7 +21,7 @@ export interface messageHead {
 export interface Stuff {
   id: string
   name: string
-  slug : string
+  slug: string
   dob: Date
   designation: string
   subject?: string

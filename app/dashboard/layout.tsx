@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: Props) {
   return (
     <TooltipProvider>
       <HeaderDashboard></HeaderDashboard>
-      <div className="mt-5 flex">
+      <div className=" flex">
         <DashboardSidebar></DashboardSidebar>
         <main className="flex-1 p-4">{children}</main>
       </div>

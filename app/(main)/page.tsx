@@ -10,7 +10,7 @@ import InstitutionStatistics from "@/Custom-Components/InstitutionStatistics"
 export default function Page() {
   return (
     <>
-      <div className="flex p-6">
+      <div className="flex p-4 -mb-10 -mt-2">
         <HeroSlider></HeroSlider>
       </div>
       <div className="flex items-center justify-between">
@@ -19,7 +19,7 @@ export default function Page() {
       </div>
       <MessageSection></MessageSection>
       <InstitutionStatistics></InstitutionStatistics>
-      <StudentStatistics></StudentStatistics>
+      {/* <StudentStatistics></StudentStatistics> */}
       <TeacherSection></TeacherSection>
       <MediaGallery></MediaGallery>
     </>

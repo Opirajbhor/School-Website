@@ -3,17 +3,12 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
-import { heroData } from "@/lib/types/Interfaces"
 import { prisma } from "@/lib/prisma/prisma"
 
 const data = await prisma.banner.findMany()
+
 export default function HeroSlider() {
-
-
-
   return (
     <div className="w-full">
       <Carousel className="mx-auto w-full max-w-7xl">
@@ -30,9 +25,9 @@ export default function HeroSlider() {
                   className="object-cover"
                 />
 
-                {/* overlay */}
+                {/* text overlay */}
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50 px-4 text-center">
-                  <h1 className="text-3xl leading-snug font-bold text-white md:text-5xl">
+                  <h1 className="-mb-70 text-3xl leading-snug font-bold text-white">
                     {item.title}
                   </h1>
                 </div>
@@ -47,10 +42,6 @@ export default function HeroSlider() {
             </CarouselItem>
           ))}
         </CarouselContent>
-
-        {/* arrows */}
-        <CarouselPrevious className="left-4" />
-        <CarouselNext className="right-4" />
       </Carousel>
     </div>
   )

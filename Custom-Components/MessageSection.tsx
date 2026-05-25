@@ -26,7 +26,7 @@ const messages = await prisma.messageHead.findMany({
 
 export default function MessageSection() {
   return (
-    <section className="w-full bg-background py-16">
+    <section className="w-full bg-background">
       <div className="mx-auto max-w-7xl px-4">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
@@ -70,7 +70,7 @@ export default function MessageSection() {
               </p>
 
               {/* Button */}
-              <Link href={'/message'}>
+              <Link href={"/message"}>
                 <Button variant="secondary" className="mt-2">
                   আরো পড়ুন →
                 </Button>

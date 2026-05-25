@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Image from "next/image"
 import { staffDataType } from "@/lib/types/type"
 
@@ -6,7 +6,6 @@ type StaffTableProps = {
   staffData: staffDataType[]
 }
 export default function StaffTable({ staffData }: StaffTableProps) {
-  console.log(staffData)
   const totalItems = staffData?.length
 
   return (
