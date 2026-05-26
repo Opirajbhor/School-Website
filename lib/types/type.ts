@@ -24,3 +24,9 @@ export type logoName = {
   image?: FileList
   imageUrl?: string
 }
+export type notices = {
+  id?: string
+  title: string
+  description?: string
+  createdAt: Date
+}

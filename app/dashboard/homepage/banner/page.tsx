@@ -3,29 +3,32 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
+import { api } from "@/lib/axios/axios"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
-import React from "react"
+import { imagePreview } from "@/lib/imagePreview"
+import { heroData } from "@/lib/types/Interfaces"
+import Image from "next/image"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import toast, { Toaster } from "react-hot-toast"
 
 export default function BannerPage() {
-  const { register, handleSubmit } = useForm()
-  const onSubmit = async (data: Request) => {
-    const imgURl = await uploadImage(data?.image[0])
-    const res = await fetch("/api/banner", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        key: data.banner,
-        title: data?.title || info?.title,
-        imageUrl: imgURl || info?.imageUrl,
-      }),
-    })
+  const { register, handleSubmit, reset } = useForm<heroData>()
+  const [preview, setPreview] = useState<string | null>(null)
 
-    toast.success("Info Successfully Added!")
-    window.location.reload()
+  const onSubmit = async (data: heroData) => {
+    const currImage = data?.image[0]
+    if (!currImage) {
+      return toast.error("image file is required")
+    }
+    const imgURl = await uploadImage(currImage)
+
+    const res = await api.put("/banner", {
+      ...data,
+      imageUrl: imgURl,
+    })
+    toast.success("Banner Successfully Added!")
+    reset()
   }
 
   return (
@@ -37,7 +40,7 @@ export default function BannerPage() {
       </div>
       <form action="" onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <NativeSelect {...register("banner")}>
+          <NativeSelect {...register("key")} className="my-3">
             <NativeSelectOption value="banner-01">Banner 01</NativeSelectOption>
             <NativeSelectOption value="banner-02">Banner 02</NativeSelectOption>
             <NativeSelectOption value="banner-03">Banner 03</NativeSelectOption>
@@ -47,20 +50,18 @@ export default function BannerPage() {
           <Label htmlFor="email" className="block text-sm">
             Banner Title
           </Label>
-          <Input
-            type="text"
-            required
-            {...register("title")}
-            name="title"
-            id="titlle"
-          />
+          <Input type="text" required {...register("title")} name="title" />
         </div>
-        {/* <Image
-          src={info?.imageUrl}
-          width={400}
-          height={550}
-          alt="preview image"
-        ></Image> */}
+        {preview && (
+          <Image
+            src={preview}
+            width={400}
+            height={200}
+            priority
+            className="object-cover py-5"
+            alt="preview image"
+          />
+        )}
 
         <div className="space-y-0.5">
           <div className="flex items-center justify-between">
@@ -69,7 +70,11 @@ export default function BannerPage() {
             </Label>
           </div>
           <Input
-            {...register("image")}
+            {...register("image", {
+              onChange: (e) => {
+                setPreview(imagePreview(e.target.files[0]))
+              },
+            })}
             type="file"
             required
             accept="image/*"

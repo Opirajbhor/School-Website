@@ -12,7 +12,11 @@ type notice = {
   tittle: string
   description: string
 }
-export default function AddNotice() {
+type Props = {
+  connect: boolean
+  setConnect: React.Dispatch<React.SetStateAction<boolean>>
+}
+export default function AddNotice({ setConnect, connect }: Props) {
   const [panel, setPanel] = useState(false)
 
   const { register, handleSubmit, reset } = useForm<notice>()
@@ -27,6 +31,7 @@ export default function AddNotice() {
     const result = await res.json()
     toast.success("Notice Successfully Added!")
     reset()
+    setConnect(!connect)
   }
   return (
     <>

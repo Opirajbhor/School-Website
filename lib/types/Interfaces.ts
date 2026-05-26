@@ -1,8 +1,10 @@
-import { Component, JSX } from "react"
+import { JSX } from "react"
 
 export interface heroData {
-  src: string
-  tittle: string
+  imageUrl: string
+  key: string
+  title: string
+  image: FileList
 }
 
 export interface dashboardLinks {
