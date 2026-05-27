@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { galleryType } from "@/lib/types/type"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronUp, Trash2 } from "lucide-react"
+import { ChevronDown, ChevronUp, Trash, Trash2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import toast, { Toaster } from "react-hot-toast"
@@ -11,9 +11,20 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useEffect, useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Spinner } from "@/components/ui/spinner"
 
 type singleType = {
   id: string
@@ -21,9 +32,11 @@ type singleType = {
   imageUrl: string
 }
 export default function Gallery() {
-  const { register, handleSubmit } = useForm<galleryType>()
+  const { register, handleSubmit, reset } = useForm<galleryType>()
   const [preview, setPreview] = useState<string | null>(null)
   const [panel, setPanel] = useState(false)
+  const queryClient = useQueryClient()
+  const [loading, setLoading] = useState(false)
 
   // Gallery Data Fetch
   const {
@@ -34,23 +47,17 @@ export default function Gallery() {
     queryKey: ["Gallery"],
     queryFn: async () => {
       const res = await api.get("/gallery")
-
       return res.data
     },
+    staleTime: 0,
+    gcTime: 0,
   })
-  //   fetch data
-  useEffect(() => {
-    async function load() {
-      const res = await api.get("/gallery")
-    }
-
-    load()
-  }, [])
 
   //   submit button function
   const onSubmit = async (data: galleryType) => {
     const imageFile = data.image?.[0]
     if (!imageFile) {
+      setPreview(null)
       return toast.error("image file is required")
     }
     const imgURl = await uploadImage(imageFile)
@@ -59,11 +66,15 @@ export default function Gallery() {
       imageUrl: imgURl,
     })
     toast.success("Photo Successfully Added!")
-
-    window.location.reload()
+    queryClient.invalidateQueries({
+      queryKey: ["Gallery"],
+    })
+    reset()
+    setPreview(null)
   }
   // delete function
   const handleDelete = async (id: string) => {
+    setLoading(true)
     const res = await api.delete("/gallery", {
       data: id,
     })
@@ -156,19 +167,41 @@ export default function Gallery() {
               </div>
 
               <div className="flex items-center justify-between p-2 text-center">
-                <p className="line-clamp-1 text-xs font-medium">
+                <p className="text-md line-clamp-1 font-medium">
                   {item?.tittle}
                 </p>
 
-                {/* delete button */}
-                <Button
-                  size="icon"
-                  variant="destructive"
-                  className="h-4 w-4 text-red-400  hover:text-red-500"
-                  onClick={() => handleDelete(item?.id)}
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
+                {/* delete modal */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline">
+                      <Trash
+                        size={20}
+                        className="cursor-pointer text-red-500"
+                      />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-sm">
+                    <DialogHeader>
+                      <DialogTitle>Delete Notice</DialogTitle>
+                      <DialogDescription>
+                        Are you sure you want to delete this photo?
+                      </DialogDescription>
+                    </DialogHeader>
+
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                      </DialogClose>
+                      <Button
+                        disabled={loading}
+                        onClick={() => handleDelete(item?.id)}
+                      >
+                        {loading && <Spinner />} Delete
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </div>
             </CardContent>
           </Card>

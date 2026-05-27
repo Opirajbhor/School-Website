@@ -10,12 +10,16 @@ import InstitutionStatistics from "@/Custom-Components/InstitutionStatistics"
 export default function Page() {
   return (
     <>
-      <div className="flex p-4 -mb-10 -mt-2">
+      <div className="-mt-2 -mb-10 flex p-4">
         <HeroSlider></HeroSlider>
       </div>
-      <div className="flex items-center justify-between">
-        <AboutSection></AboutSection>
-        <NoticeBoard></NoticeBoard>
+      <div className="flex w-full items-center justify-between">
+        <div className="w-2/3">
+          <AboutSection></AboutSection>
+        </div>
+        <div className="w-1/3">
+          <NoticeBoard></NoticeBoard>
+        </div>
       </div>
       <MessageSection></MessageSection>
       <InstitutionStatistics></InstitutionStatistics>

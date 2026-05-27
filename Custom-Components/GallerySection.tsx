@@ -11,6 +11,7 @@ export default async function MediaGallery() {
   const galleryData: galleryType[] = await prisma.gallery.findMany({
     orderBy: { createdAt: "desc" },
   })
+  console.log(galleryData)
   // --------------
   return (
     <section className="bg-background py-12">

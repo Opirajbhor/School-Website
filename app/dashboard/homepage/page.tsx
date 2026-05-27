@@ -1,32 +1,40 @@
+import { Card, CardContent } from "@/components/ui/card"
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import {
+  ChartColumn,
+  Feather,
+  LogOut,
+  MessagesSquare,
+  SwitchCamera,
+} from "lucide-react"
 import Link from "next/link"
 
 export default function HomepageCustomization() {
   const tabs = [
     {
       link: "/dashboard/homepage/logo-name",
-      name: "Logo and Name",
-      icon: "",
+      name: "নাম ও লগো পরিবর্তন",
+      icon: <Feather />,
     },
     {
       link: "/dashboard/homepage/banner",
-      name: "Banner",
-      icon: "",
+      name: "ব্যানার পরিবর্তন",
+      icon: <SwitchCamera />,
     },
     {
       link: "/dashboard/homepage/statistics",
-      name: "Statistics",
-      icon: "",
+      name: "পরিসংখ্যান",
+      icon: <ChartColumn />,
     },
     {
       link: "/dashboard/homepage/headMasterMessage",
-      name: "HeadMaster Message",
-      icon: "",
+      name: "প্রধান শিক্ষকের বাণী",
+      icon: <MessagesSquare />,
     },
     {
       link: "/dashboard/homepage/chairmanMessage",
-      name: "Chairman Message",
-      icon: "",
+      name: "সভাপতি মহোদয়ের বাণী",
+      icon: <MessagesSquare />,
     },
   ]
   setTimeout(() => <LoadingSpinner />, 1000)
@@ -35,14 +43,24 @@ export default function HomepageCustomization() {
       <div>
         <h1 className="my-5 text-center underline">Homepage Customization</h1>
       </div>
-      <div className="grid grid-cols-4 gap-5">
-        {tabs.map((tab, index) => (
-          <Link
-            key={index}
-            href={tab.link}
-            className="w-60 rounded-2xl bg-accent p-20"
-          >
-            {tab.name}
+
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {tabs.map((tab, i) => (
+          <Link key={i} href={tab.link}>
+            <Card className="group relative overflow-hidden px-2 py-6 shadow-xs transition-all hover:shadow-md">
+              <CardContent>
+                <div className="flex flex-col items-center gap-4">
+                  <div className="flex size-12 items-center justify-center rounded-lg bg-secondary   text-secondary-foreground">
+                    {tab.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">
+                      {tab.name}
+                    </h3>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </Link>
         ))}
       </div>

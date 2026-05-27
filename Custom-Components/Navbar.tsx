@@ -78,9 +78,9 @@ export default async function Navbar() {
         {/* Right */}
         <div className="flex items-center gap-2">
           <ModeToggle></ModeToggle>
-          <Button className="hidden md:flex">
-            <Link href={"/dashboard/homepage"}>Login</Link>
-          </Button>
+          <Link href={"/dashboard/homepage"}>
+            <Button className="hidden md:flex">Login</Button>
+          </Link>
         </div>
       </div>
     </nav>
