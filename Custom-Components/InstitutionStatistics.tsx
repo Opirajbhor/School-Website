@@ -7,39 +7,38 @@ interface InstitutionStat {
   label: string
 }
 
-const infoData = await prisma.statistics.findMany({
-  orderBy: { createdAt: "desc" },
-})
-
-const stats: InstitutionStat[] = [
-  {
-    key: infoData[3]?.key || "Students",
-    value: infoData[3]?.value || "0",
-    label: "সর্বোমোট শিক্ষার্থী",
-  },
-  {
-    key: infoData[4]?.key || "Teachers",
-    value: infoData[4]?.value || "0",
-    label: "শিক্ষক/শিক্ষিকা",
-  },
-  {
-    key: infoData[2]?.key || "Stuff",
-    value: infoData[2]?.value || "0",
-    label: "অফিশ কর্মচারী",
-  },
-  {
-    key: infoData[0]?.key || "Building",
-    value: infoData[0]?.value || "0",
-    label: "সর্বোমোট কক্ষ",
-  },
-  {
-    key: infoData[1]?.key || "Total Room",
-    value: infoData[1]?.value || "0",
-    label: "বিদ্যালয় ভবন",
-  },
-]
-
-const InstitutionStatistics = () => {
+const InstitutionStatistics = async () => {
+  // fetch data---
+  const infoData = await prisma.statistics.findMany({
+    orderBy: { createdAt: "desc" },
+  })
+  const stats: InstitutionStat[] = [
+    {
+      key: infoData[3]?.key || "Students",
+      value: infoData[3]?.value || "0",
+      label: "সর্বোমোট শিক্ষার্থী",
+    },
+    {
+      key: infoData[4]?.key || "Teachers",
+      value: infoData[4]?.value || "0",
+      label: "শিক্ষক/শিক্ষিকা",
+    },
+    {
+      key: infoData[2]?.key || "Stuff",
+      value: infoData[2]?.value || "0",
+      label: "অফিশ কর্মচারী",
+    },
+    {
+      key: infoData[0]?.key || "Building",
+      value: infoData[0]?.value || "0",
+      label: "সর্বোমোট কক্ষ",
+    },
+    {
+      key: infoData[1]?.key || "Total Room",
+      value: infoData[1]?.value || "0",
+      label: "বিদ্যালয় ভবন",
+    },
+  ]
   return (
     <section className="bg-background py-16">
       <div className="container px-4">

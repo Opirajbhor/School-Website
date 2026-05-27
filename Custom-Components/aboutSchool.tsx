@@ -4,10 +4,10 @@ import { prisma } from "@/lib/prisma/prisma"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
-//   fetch data
-const info = await prisma.aboutSchool.findFirst()
+export default async function AboutSection() {
+  //   fetch data
+  const info = await prisma.aboutSchool.findFirst()
 
-export default function AboutSection() {
   return (
     <section className="w-full bg-background">
       <div className="relative mx-auto max-w-7xl px-4">

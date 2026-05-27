@@ -8,9 +8,9 @@ import ModeToggle from "../components/ui/modeToggle"
 import Image from "next/image"
 import { prisma } from "@/lib/prisma/prisma"
 
-// Logo and name Data Fetch
-const logoName = await prisma.logoName.findFirst()
-export default function Navbar() {
+export default async function Navbar() {
+  // Logo and name Data Fetch
+  const logoName = await prisma.logoName.findFirst()
   const navLinks = [
     {
       href: "/",

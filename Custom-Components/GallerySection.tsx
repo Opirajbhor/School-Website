@@ -6,11 +6,12 @@ import { GalleryGrid } from "./GalleryGrid"
 import { galleryType } from "@/lib/types/type"
 import { prisma } from "@/lib/prisma/prisma"
 
-const galleryData: galleryType[] = await prisma.gallery.findMany({
-  orderBy: { createdAt: "desc" },
-})
-
-const MediaGallery = () => {
+export default async function MediaGallery() {
+  // fetch data
+  const galleryData: galleryType[] = await prisma.gallery.findMany({
+    orderBy: { createdAt: "desc" },
+  })
+  // --------------
   return (
     <section className="bg-background py-12">
       <div className="container px-4">
@@ -43,5 +44,3 @@ const MediaGallery = () => {
     </section>
   )
 }
-
-export default MediaGallery

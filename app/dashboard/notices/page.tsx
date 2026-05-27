@@ -28,7 +28,6 @@ export default function NoticesDashboard() {
 
     load()
   }, [connect])
-  console.log(connect)
   if (loading === false) {
     return <LoadingSpinner />
   }

@@ -6,9 +6,8 @@ import {
 } from "@/components/ui/carousel"
 import { prisma } from "@/lib/prisma/prisma"
 
-const data = await prisma.banner.findMany()
-
-export default function HeroSlider() {
+export default async function HeroSlider() {
+  const data = await prisma.banner.findMany()
   return (
     <div className="w-full">
       <Carousel className="mx-auto w-full max-w-7xl">

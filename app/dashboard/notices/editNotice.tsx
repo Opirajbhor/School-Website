@@ -38,12 +38,10 @@ export function NoticeAction({ item, setConnect, connect }: Props) {
   }
   // edit function
   const editFn = async (data: notices) => {
-    console.log(data)
     setLoading(true)
     const res = await api.put("/notices", {
       data: { ...data },
     })
-    console.log(res)
     setConnect(!connect)
     if (res.status === 200) {
       window.location.reload()

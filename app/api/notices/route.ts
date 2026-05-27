@@ -24,7 +24,6 @@ export async function POST(req: Request) {
 
 export async function DELETE(req: Request) {
   const body = await req.json()
-  console.log(body)
   try {
     const notice = await prisma.notice.delete({
       where: { id: body.id },
@@ -48,7 +47,6 @@ export async function DELETE(req: Request) {
 export async function PUT(req: Request) {
   const data = await req.json()
   const body = data?.data
-  console.log(body)
   const notice = await prisma.notice.update({
     where: { id: body?.id },
     data: { title: body?.title, description: body?.description },

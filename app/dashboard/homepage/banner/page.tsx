@@ -1,8 +1,10 @@
 "use client"
+import Loading from "@/app/loading"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
+import { Spinner } from "@/components/ui/spinner"
 import { api } from "@/lib/axios/axios"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import { imagePreview } from "@/lib/imagePreview"
@@ -15,10 +17,13 @@ import toast, { Toaster } from "react-hot-toast"
 export default function BannerPage() {
   const { register, handleSubmit, reset } = useForm<heroData>()
   const [preview, setPreview] = useState<string | null>(null)
+  const [spin, setSpin] = useState<boolean>(false)
 
   const onSubmit = async (data: heroData) => {
+    setSpin(true)
     const currImage = data?.image[0]
     if (!currImage) {
+      setSpin(false)
       return toast.error("image file is required")
     }
     const imgURl = await uploadImage(currImage)
@@ -29,6 +34,8 @@ export default function BannerPage() {
     })
     toast.success("Banner Successfully Added!")
     reset()
+    setPreview(null)
+    setSpin(false)
   }
 
   return (
@@ -82,8 +89,8 @@ export default function BannerPage() {
           />
         </div>
 
-        <Button type="submit" className="mt-5 w-full">
-          Update
+        <Button disabled={spin} type="submit" className="mt-5 w-full">
+          {spin && <Spinner />} Update
         </Button>
       </form>
       <Toaster />

@@ -4,9 +4,10 @@ import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import React from "react"
 
-const logoName = await prisma.logoName.findFirst()
-
-const HeaderDashboard = () => {
+export default async function HeaderDashboard() {
+  // data fetch
+  const logoName = await prisma.logoName.findFirst()
+  // -----
   return (
     <div className="mt-3 flex items-center justify-between border-b-2">
       <div>
@@ -33,5 +34,3 @@ const HeaderDashboard = () => {
     </div>
   )
 }
-
-export default HeaderDashboard

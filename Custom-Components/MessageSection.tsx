@@ -20,11 +20,11 @@ import Link from "next/link"
 //   },
 // ]
 
-const messages = await prisma.messageHead.findMany({
-  orderBy: { createdAt: "desc" },
-})
-
-export default function MessageSection() {
+export default async function MessageSection() {
+  // fetch data
+  const messages = await prisma.messageHead.findMany({
+    orderBy: { createdAt: "desc" },
+  })
   return (
     <section className="w-full bg-background">
       <div className="mx-auto max-w-7xl px-4">

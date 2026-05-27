@@ -1,15 +1,16 @@
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { prisma } from "@/lib/prisma/prisma"
-import { Megaphone, AlertCircle, ArrowRight } from "lucide-react"
+import { Megaphone, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
-const notices = await prisma.notice.findMany({
-  orderBy: { createdAt: "desc" },
-  take: 5,
-})
+export default async function NoticeBoard() {
+  // notice fetch
+  const notices = await prisma.notice.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 5,
+  })
 
-export default function NoticeBoard() {
   return (
     <section className="w-50% bg-muted/40 py-16">
       <div className="mx-auto max-w-3xl px-4">

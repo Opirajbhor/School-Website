@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma"
 import { NextResponse } from "next/server"
-
 export async function GET() {
   const notices = await prisma.banner.findMany({
     orderBy: { createdAt: "desc" },
