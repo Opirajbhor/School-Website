@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import AddNotice from "./add-notice/addNotice"
-import { DeleteNotice } from "./editNotice"
+import { NoticeAction } from "./editNotice"
 import { api } from "@/lib/axios/axios"
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { notices } from "@/lib/types/type"
@@ -67,8 +67,8 @@ export default function NoticesDashboard() {
                 {/* Actions */}
                 <TableCell className="flex gap-2">
                   {item?.id && (
-                    <DeleteNotice
-                      id={item.id}
+                    <NoticeAction
+                      item={item}
                       setConnect={setConnect}
                       connect={connect}
                     />
