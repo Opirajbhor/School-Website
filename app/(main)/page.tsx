@@ -6,6 +6,7 @@ import TeacherSection from "@/Custom-Components/Stuff-Section/TeacherSection"
 import StudentStatistics from "@/Custom-Components/StudentStatistics"
 import MediaGallery from "@/Custom-Components/GallerySection"
 import InstitutionStatistics from "@/Custom-Components/InstitutionStatistics"
+import Footer from "@/Custom-Components/Footer"
 
 export default function Page() {
   return (
@@ -26,6 +27,7 @@ export default function Page() {
       {/* <StudentStatistics></StudentStatistics> */}
       <TeacherSection></TeacherSection>
       <MediaGallery></MediaGallery>
+      <Footer />
     </>
   )
 }
