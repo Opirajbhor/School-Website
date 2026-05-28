@@ -3,6 +3,7 @@ import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import {
   ChartColumn,
   Feather,
+  InspectionPanel,
   LogOut,
   MessagesSquare,
   SwitchCamera,
@@ -36,6 +37,11 @@ export default function HomepageCustomization() {
       name: "সভাপতি মহোদয়ের বাণী",
       icon: <MessagesSquare />,
     },
+    {
+      link: "/dashboard/homepage/footer",
+      name: "বিদ্যালয় তথ্য পরিবর্তন",
+      icon: <InspectionPanel />,
+    },
   ]
   setTimeout(() => <LoadingSpinner />, 1000)
   return (
@@ -50,7 +56,7 @@ export default function HomepageCustomization() {
             <Card className="group relative overflow-hidden px-2 py-6 shadow-xs transition-all hover:shadow-md">
               <CardContent>
                 <div className="flex flex-col items-center gap-4">
-                  <div className="flex size-12 items-center justify-center rounded-lg bg-secondary   text-secondary-foreground">
+                  <div className="flex size-12 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
                     {tab.icon}
                   </div>
                   <div>

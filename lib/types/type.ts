@@ -30,3 +30,14 @@ export type notices = {
   description?: string
   createdAt: Date
 }
+
+export type footerAddress = {
+  id: string
+  key: string
+  eiin?: string
+  mpoCode?: string
+  address: string
+  phone01: string
+  phone02?: string 
+  email: string
+}

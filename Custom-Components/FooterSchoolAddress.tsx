@@ -1,7 +1,9 @@
 import React from "react"
-import { MapPin, Phone, Mail, Info } from "lucide-react"
+import { MapPin, Phone, Mail } from "lucide-react"
+import { prisma } from "@/lib/prisma/prisma"
 
-export default function FooterSchoolAddress() {
+export default async function FooterSchoolAddress() {
+  const info = await prisma.footerAddress.findFirst()
   return (
     <div className="relative w-full max-w-md rounded-lg font-sans text-card-foreground">
       {/* Header Section */}
@@ -17,9 +19,7 @@ export default function FooterSchoolAddress() {
             <MapPin size={16} className="fill-primary/10" />
           </div>
           <p className="pt-1 text-[15px] leading-relaxed font-medium text-muted-foreground">
-            Flat #B4, House No: 71, Road: 27,
-            <br />
-            Gulshan-1, Dhaka 1212
+            {info ? info?.address : "Bajitpur, Kishoreganj,  Dhaka "}
           </p>
         </div>
 
@@ -29,8 +29,8 @@ export default function FooterSchoolAddress() {
             <Phone size={16} className="fill-primary/10" />
           </div>
           <div className="space-y-0.5 pt-1 text-[15px] font-medium text-muted-foreground">
-            <p>+880 1234 567890</p>
-            <p>+880 1234 567890</p>
+            <p>+880 {info ? info?.phone01 : "1234 567890"}</p>
+            <p> {info?.phone02 && `+88 ${info?.phone02}`}</p>
           </div>
         </div>
 
@@ -41,7 +41,7 @@ export default function FooterSchoolAddress() {
           </div>
           <div className="space-y-0.5 pt-1 text-[15px] font-medium text-muted-foreground">
             <p className="cursor-pointer transition-colors hover:text-primary">
-              info@xyzschool.com
+              {info ? info?.email : "name@email.com"}
             </p>
           </div>
         </div>

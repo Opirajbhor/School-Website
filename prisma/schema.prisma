@@ -98,3 +98,17 @@ model gallery {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Footer Address
+model footerAddress {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  key       String   @unique
+  eiin      String
+  mpoCode   String
+  address   String
+  phone01   String
+  phone02   String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
