@@ -2,35 +2,13 @@ import { Button } from "@/components/ui/button"
 import StaffCard from "./StuffCard"
 import { prisma } from "@/lib/prisma/prisma"
 import Link from "next/link"
+import { staffDataType } from "@/lib/types/type"
 
-// const teachers = [
-//   {
-//     name: "আব্দুল্লাহ আল নোমান",
-//     slug : "আব্দুল্লাহ-আল-নোমান",
-//     role: "সিনিয়র বাংলা শিক্ষক",
-//     image: "/t1.jpg",
-//   },
-//   {
-//     name: "মাহবুব সরকার",
-//     role: "সিনিয়র ইংরেজি শিক্ষক",
-//     image: "/t2.jpg",
-//   },
-//   {
-//     name: "সোনিয়া আক্তার",
-//     role: "গণিত শিক্ষিকা",
-//     image: "/t3.jpg",
-//   },
-//   {
-//     name: "তাসনিম জারা শাওন",
-//     role: "সিনিয়র বিজ্ঞান শিক্ষিকা",
-//     image: "/t4.jpg",
-//   },
-// ];
+export default async function TeacherSection() {
+  const teachers = await prisma.staff.findMany({
+    orderBy: { createdAt: "desc" },
+  })
 
-const teachers = await prisma.staff.findMany({
-  orderBy: { createdAt: "desc" },
-})
-export default function TeacherSection() {
   return (
     <section className="w-full bg-background py-16">
       <div className="mx-auto max-w-7xl px-4">

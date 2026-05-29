@@ -5,8 +5,9 @@ export type staffDataType = {
   subject: string
   index: string
   joinDate: string
+  phone: string
   comment: string
-  image: FileList
+  image?: FileList
   imageUrl: string
 }
 
@@ -38,6 +39,6 @@ export type footerAddress = {
   mpoCode?: string
   address: string
   phone01: string
-  phone02?: string 
+  phone02?: string
   email: string
 }

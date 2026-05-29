@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Mail, Phone } from "lucide-react"
+import { staffDataType } from "@/lib/types/type"
+import { Phone } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 
-const StaffCard = ({ staff }) => {
+const StaffCard = ({ staff }: { staff: staffDataType }) => {
   return (
     <Card className="flex flex-col items-center gap-4 rounded-xl p-4 shadow-sm md:flex-row">
       {/* Image */}
@@ -26,7 +27,7 @@ const StaffCard = ({ staff }) => {
         {/* Icons */}
         <div className="flex gap-2 pt-2">
           <Phone size={16} />
-          <p>{staff?.Phone}</p>
+          <p>{staff?.phone}</p>
         </div>
 
         {/* Button */}
