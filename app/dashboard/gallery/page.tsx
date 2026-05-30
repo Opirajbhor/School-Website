@@ -34,9 +34,9 @@ type singleType = {
 export default function Gallery() {
   const { register, handleSubmit, reset } = useForm<galleryType>()
   const [preview, setPreview] = useState<string | null>(null)
-  const [panel, setPanel] = useState(false)
+  const [panel, setPanel] = useState<boolean>(false)
   const queryClient = useQueryClient()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   // Gallery Data Fetch
   const {
@@ -54,11 +54,16 @@ export default function Gallery() {
   })
 
   //   submit button function
+  // max image size
+  const maxImageSize = 500 * 1024 //500KB
   const onSubmit = async (data: galleryType) => {
     const imageFile = data.image?.[0]
     if (!imageFile) {
       setPreview(null)
       return toast.error("image file is required")
+    }
+    if (imageFile.size > maxImageSize) {
+      return toast.error("Image too big! Image size must be under 500KB")
     }
     const imgURl = await uploadImage(imageFile)
     const res = await api.post("/gallery", {

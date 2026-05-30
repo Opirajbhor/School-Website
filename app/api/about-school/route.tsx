@@ -14,20 +14,21 @@ export async function GET() {
 }
 
 export async function PUT(req: Request) {
-  const body = await req.json()
-
+  const reqbody = await req.json()
+  const body = reqbody.data
+  console.log(body)
   const info = await prisma.aboutSchool.upsert({
     where: { key: "main" },
     update: {
-      title: body.title ?? "",
-      description: body.description ?? "",
-      imageUrl: body.imageUrl ?? "",
+      title: body.title,
+      description: body.description,
+      imageUrl: body.imageUrl,
     },
     create: {
       key: "main",
-      title: body.title ?? "",
-      description: body.description ?? "",
-      imageUrl: body.imageUrl ?? "",
+      title: body.title,
+      description: body.description,
+      imageUrl: body.imageUrl,
     },
   })
 

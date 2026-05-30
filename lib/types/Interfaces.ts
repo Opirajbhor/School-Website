@@ -20,4 +20,10 @@ export interface messageHead {
   desc: string
 }
 
-
+export interface aboutSchool {
+  key: string
+  title: string
+  description: string
+  imageUrl: string
+  image?: FileList
+}
