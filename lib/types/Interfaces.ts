@@ -20,25 +20,4 @@ export interface messageHead {
   desc: string
 }
 
-export interface Stuff {
-  id: string
-  name: string
-  slug: string
-  dob: Date
-  designation: string
-  subject?: string
-  religion?: string
-  mpoIndex: string
-  joinDate: Date
-  email: string
-  phone: string
-  gender: "MALE" | "FEMALE"
-  image: string
-  classTeacher?: string
-  nidNo?: string
-  address?: string
-  lastEducation?: string
-  instituteSection: "General" | "Vocational"
-  createdAt: Date
-  updatedAt: Date
-}
+

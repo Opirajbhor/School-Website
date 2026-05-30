@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button"
-import StaffCard from "./StuffCard"
+import StaffCard from "./StaffCard"
 import { prisma } from "@/lib/prisma/prisma"
 import Link from "next/link"
 import { staffDataType } from "@/lib/types/type"
 
 export default async function TeacherSection() {
-  const teachers = await prisma.staff.findMany({
+  const teachers: staffDataType[] = await prisma.staff.findMany({
     orderBy: { createdAt: "desc" },
   })
 

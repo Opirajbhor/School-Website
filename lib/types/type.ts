@@ -1,14 +1,19 @@
+export type PraisePoint = {
+  title: string
+  description: string
+}
+
 export type staffDataType = {
   id?: string
   name: string
   designation: string
   subject: string
-  index: string
-  joinDate: string
-  phone: string
+  mpoIndex: string | null
+  joiningDate: string
   comment: string
-  image?: FileList
   imageUrl: string
+  phone: string
+  image?: FileList
 }
 
 export type galleryType = {

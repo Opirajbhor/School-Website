@@ -11,9 +11,17 @@ import { staffDataType } from "@/lib/types/type"
 import StaffTable from "@/Custom-Components/Stuff-Section/StaffTable"
 import { useEffect, useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
+import { imagePreview } from "@/lib/imagePreview"
+import { Spinner } from "@/components/ui/spinner"
 
 export default function StuffManagement() {
-  const { register, handleSubmit } = useForm<staffDataType>()
+  const { register, handleSubmit, reset } = useForm<staffDataType>()
+  const [preview, setPreview] = useState<string | null>(null)
+  const [spin, setSpin] = useState<boolean>(false)
+  const [load, setLoad] = useState<boolean>(false)
+  // add staff panel open-close
+  const [staffPanel, setStaffPanel] = useState(false)
+
   //   fetch data
   const [staffData, setStaffData] = useState<staffDataType[]>([])
   useEffect(() => {
@@ -24,37 +32,57 @@ export default function StuffManagement() {
     }
 
     load()
-  }, [])
+  }, [load])
   //   submit button function
-  const onSubmit = async (data: staffDataType) => {
-    const imgURl = await uploadImage(data?.image[0])
+  // max image size
+  const maxImageSize = 150 * 1024 //150KB
 
-    const res = await fetch("/api/staff", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data?.name,
-        designation: data?.designation,
-        subject: data?.subject,
-        index: data?.index,
-        joinDate: data?.joinDate,
-        comment: data?.comment,
-        imageUrl: imgURl!,
-      }),
-    })
-    toast.success("Stuff Successfully Added!")
-    // window.location.reload()
+  const onSubmit = async (data: staffDataType) => {
+    setSpin(true)
+
+    let imgURl = ""
+    try {
+      if (data.image && data.image[0]) {
+        if (data.image[0].size > maxImageSize) {
+          return toast.error("Image too big! Image size must be under 150KB")
+        }
+        imgURl = await uploadImage(data.image[0])
+      }
+      const res = await fetch("/api/staff", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data?.name,
+          designation: data?.designation,
+          subject: data?.subject,
+          mpoIndex: data?.mpoIndex,
+          joiningDate: data?.joiningDate,
+          phone: data?.phone,
+          comment: data?.comment,
+          imageUrl: imgURl,
+        }),
+      })
+      if (res.status === 200) {
+        toast.success("Staff Successfully Added!")
+        reset()
+        setPreview(null)
+        setLoad(!load)
+        setStaffPanel(false)
+      }
+    } catch (error) {
+      toast.error("teacher adding failed")
+    } finally {
+      setSpin(false)
+    }
   }
-  // add staff panel open-close
-  const [staffPanel, setStaffPanel] = useState(false)
 
   return (
     <>
       <div>
         <h1 className="mb-10 text-center text-2xl underline">
-          Stuff Management
+          Stuff Management ({staffData?.length})
         </h1>
 
         {/* panel */}
@@ -75,7 +103,7 @@ export default function StuffManagement() {
             {/* full name */}
             <div className="mb-5 space-y-2">
               <Label htmlFor="name" className="block text-sm">
-                শিক্ষকের/কর্মচারীর নাম *
+                শিক্ষকের/কর্মচারীর নাম :
               </Label>
               <Input type="text" {...register("name")} required />
             </div>
@@ -83,7 +111,7 @@ export default function StuffManagement() {
             {/* designation */}
             <div className="mb-5 space-y-2">
               <Label htmlFor="designation" className="block text-sm">
-                পদবী *
+                পদবী :
               </Label>
               <Input type="text" {...register("designation")} required />
             </div>
@@ -91,7 +119,7 @@ export default function StuffManagement() {
             {/* Subject */}
             <div className="mb-5 space-y-2">
               <Label htmlFor="subject" className="block text-sm">
-                বিষয়
+                বিষয় :
               </Label>
               <Input type="text" {...register("subject")} />
             </div>
@@ -99,50 +127,69 @@ export default function StuffManagement() {
             {/* MPO index */}
             <div className="mb-5 space-y-2">
               <Label htmlFor="index" className="block text-sm">
-                এমপিও ইনডেক্স
+                এমপিও ইনডেক্স :
               </Label>
-              <Input type="text" {...register("index")} />
+              <Input type="text" {...register("mpoIndex")} />
             </div>
 
             {/* Join Date */}
             <div className="mb-5 space-y-2">
               <Label htmlFor="joinDate" className="block text-sm">
-                যোগদানের তারিখ *
+                যোগদানের তারিখ :
               </Label>
-              <Input type="date" {...register("joinDate")} required />
+              <Input type="date" {...register("joiningDate")} required />
+            </div>
+
+            {/* Phone number */}
+            <div className="mb-5 space-y-2">
+              <Label htmlFor="index" className="block text-sm">
+                মোবাইল :
+              </Label>
+              <Input maxLength={11} type="text" {...register("phone")} />
             </div>
 
             {/* Comment */}
             <div className="mb-5 space-y-2">
               <Label htmlFor="comment" className="block text-sm">
-                শিক্ষকের/কর্মচারীর মন্তব্য
+                শিক্ষকের/কর্মচারীর মন্তব্য :
               </Label>
               <Textarea {...register("comment")} required />
             </div>
 
             {/* image preview */}
-            <Image
-              src={"/placeholder.png"}
-              width={50}
-              height={50}
-              alt="preview image"
-            />
+            {preview && (
+              <Image
+                src={preview}
+                width={300}
+                height={150}
+                alt="preview image"
+                className="mb-3"
+              />
+            )}
 
             {/* image */}
             <div className="mb-5 space-y-2">
               <Label htmlFor="image" className="block text-sm">
-                শিক্ষকের/কর্মচারীর ছবি *
+                শিক্ষকের/কর্মচারীর ছবি :*
               </Label>
               <Input
                 type="file"
                 accept="image/*"
-                {...register("image")}
+                {...register("image", {
+                  onChange: (e) => {
+                    if (e.target.files && e.target.files[0]) {
+                      setPreview(imagePreview(e.target.files[0]))
+                    }
+                  },
+                })}
                 required
               />
             </div>
 
             <div className="mb-5 space-y-2">
-              <Button type="submit">Submit</Button>
+              <Button disabled={spin} type="submit">
+                {spin && <Spinner />} Submit
+              </Button>
             </div>
           </form>
         )}

@@ -23,6 +23,7 @@ const StaffCard = ({ staff }: { staff: staffDataType }) => {
       <div className="flex-1 space-y-2">
         <h3 className="text-lg font-semibold">{staff.name}</h3>
         <p className="text-sm text-muted-foreground">({staff.designation})</p>
+        <p className="text-sm text-muted-foreground">({staff.mpoIndex})</p>
 
         {/* Icons */}
         <div className="flex gap-2 pt-2">
