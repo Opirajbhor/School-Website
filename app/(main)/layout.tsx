@@ -1,3 +1,4 @@
+import Footer from "@/Custom-Components/Footer"
 import Navbar from "@/Custom-Components/Navbar"
 import { ReactNode } from "react"
 type Props = {
@@ -8,6 +9,7 @@ export default function MainLayout({ children }: Props) {
     <>
       <Navbar />
       {children}
+      <Footer />
     </>
   )
 }

@@ -27,7 +27,6 @@ export default function Page() {
       {/* <StudentStatistics></StudentStatistics> */}
       <TeacherSection></TeacherSection>
       <MediaGallery></MediaGallery>
-      <Footer />
     </>
   )
 }
