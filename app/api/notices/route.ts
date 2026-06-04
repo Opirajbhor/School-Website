@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma"
 import { NextResponse } from "next/server"
-import { error } from "node:console"
 
 export async function GET() {
   const notices = await prisma.notice.findMany({

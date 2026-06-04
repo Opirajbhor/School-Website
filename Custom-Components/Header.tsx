@@ -41,7 +41,7 @@ export default async function Header() {
           `}</style>
 
           {/* Render the contents twice [1, 2] to establish a seamless infinite loop */}
-          <div className="animate-inline-marquee flex cursor-pointer gap-16 text-sm font-medium whitespace-nowrap">
+          <div className="animate-inline-marquee flex cursor-pointer gap-20 text-sm font-medium whitespace-nowrap">
             {[1, 2].map((_, instanceIndex) => (
               <div key={instanceIndex} className="flex items-center gap-16">
                 {notices.map((notice, noticeIndex) => (
