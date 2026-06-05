@@ -33,6 +33,8 @@ export type logoName = {
 export type notices = {
   id?: string
   title: string
+  fileUrl: string
+  file: FileList
   description?: string
   createdAt: Date
 }

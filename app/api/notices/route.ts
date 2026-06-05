@@ -13,8 +13,9 @@ export async function POST(req: Request) {
 
   const notice = await prisma.notice.create({
     data: {
-      title: body.tittle,
+      title: body.title,
       description: body.description,
+      fileUrl: body.fileUrl,
     },
   })
 

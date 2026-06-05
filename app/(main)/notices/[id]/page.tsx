@@ -1,5 +1,6 @@
 "use client"
 
+import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { api } from "@/lib/axios/axios"
 import { notices } from "@/lib/types/type"
 import { useParams } from "next/navigation"
@@ -11,16 +12,20 @@ export default function Notice() {
   //   fetch data
   useEffect(() => {
     async function load() {
-      const res  = await api.get(`notice-details/${id}`)
+      const res = await api.get(`notice-details/${id}`)
       setNotice(res.data)
     }
 
     load()
   }, [id])
-      console.log(notice)
+  console.log(notice)
+
+  if (!notice) {
+    return <LoadingSpinner />
+  }
 
   return (
-    <article className="mx-auto max-w-4xl my-6 rounded-lg border p-6">
+    <article className="mx-auto my-6 max-w-4xl rounded-lg border p-6">
       {/* {notice?.isImportant && (
         <span className="mb-4 inline-block rounded bg-red-500 px-3 py-1 text-sm text-white">
           Important Notice
@@ -30,7 +35,7 @@ export default function Notice() {
       <h1 className="text-3xl font-bold">{notice?.title}</h1>
 
       <p className="mt-2 text-sm text-muted-foreground">
-        Published: {new Date(notice?.createdAt).toLocaleDateString()}
+        Published: {new Date(notice.createdAt).toLocaleDateString()}
       </p>
 
       <div className="prose mt-6 max-w-none">
