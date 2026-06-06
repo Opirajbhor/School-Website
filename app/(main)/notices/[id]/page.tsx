@@ -3,6 +3,7 @@
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { api } from "@/lib/axios/axios"
 import { notices } from "@/lib/types/type"
+import Image from "next/image"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -18,7 +19,6 @@ export default function Notice() {
 
     load()
   }, [id])
-  console.log(notice)
 
   if (!notice) {
     return <LoadingSpinner />
@@ -42,15 +42,15 @@ export default function Notice() {
         <p>{notice?.description}</p>
       </div>
 
-      {/* {notice.fileUrl && (
-        <a
-          href={notice.fileUrl}
-          target="_blank"
-          className="mt-6 inline-block rounded bg-primary px-4 py-2 text-primary-foreground"
-        >
-          Download Attachment
-        </a>
-      )} */}
+      {notice.fileUrl && (
+        <Image
+        className="mt-5"
+          src={notice.fileUrl}
+          width={500}
+          height={500}
+          alt={notice.title}
+        ></Image>
+      )}
     </article>
   )
 }

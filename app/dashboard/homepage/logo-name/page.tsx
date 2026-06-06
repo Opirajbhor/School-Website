@@ -85,9 +85,10 @@ export default function LogoName() {
         {/* full name */}
         <div className="mb-5 space-y-2">
           <Label htmlFor="name" className="block text-sm">
-            বিদ্যালয়ের নাম *
+            বিদ্যালয়ের নাম :
           </Label>
           <Input
+            className="w-full rounded-2xl border p-2"
             type="text"
             {...register("name")}
             defaultValue={logoName?.name}
@@ -95,11 +96,14 @@ export default function LogoName() {
           />
         </div>
 
-        <div>
-          <textarea
-            className="h-auto min-h-50 w-full resize-none overflow-auto rounded-2xl border-2 border-black p-3"
+        <div className="mb-5 space-y-2">
+          <Label htmlFor="name" className="block text-sm">
+            স্লোগান :
+          </Label>
+          <Input
+            className="w-full rounded-2xl border p-2"
+            type="text"
             {...register("slogan")}
-            placeholder="slogan"
             defaultValue={logoName?.slogan}
             required
           />
