@@ -29,7 +29,7 @@ export default function Statistics() {
       body: JSON.stringify(entries),
     })
 
-    const result = await res.json()
+     await res.json()
     toast.success("Successfully Updated!")
     window.location.reload()
   }

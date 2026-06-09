@@ -31,7 +31,7 @@ export function NoticeAction({ item, setConnect, connect }: Props) {
   // delete function
   const deleteFn = async () => {
     setLoading(true)
-    const res = await api.delete("/notices", {
+  await api.delete("/notices", {
       data: { id: item.id },
     })
     setConnect(!connect)

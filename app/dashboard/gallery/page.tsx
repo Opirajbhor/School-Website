@@ -66,7 +66,7 @@ export default function Gallery() {
       return toast.error("Image too big! Image size must be under 500KB")
     }
     const imgURl = await uploadImage(imageFile)
-    const res = await api.post("/gallery", {
+    await api.post("/gallery", {
       ...data,
       imageUrl: imgURl,
     })
@@ -80,7 +80,7 @@ export default function Gallery() {
   // delete function
   const handleDelete = async (id: string) => {
     setLoading(true)
-    const res = await api.delete("/gallery", {
+    await api.delete("/gallery", {
       data: id,
     })
     window.location.reload()

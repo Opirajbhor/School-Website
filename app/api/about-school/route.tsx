@@ -6,6 +6,7 @@ export async function GET() {
     const info = await prisma.aboutSchool.findFirst()
     return NextResponse.json(info)
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
       { error: "Failed to fetch school info" },
       { status: 500 }

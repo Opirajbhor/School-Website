@@ -1,5 +1,4 @@
 "use client"
-import Loading from "@/app/loading"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -28,7 +27,7 @@ export default function BannerPage() {
     }
     const imgURl = await uploadImage(currImage)
 
-    const res = await api.put("/banner", {
+    await api.put("/banner", {
       ...data,
       imageUrl: imgURl,
     })

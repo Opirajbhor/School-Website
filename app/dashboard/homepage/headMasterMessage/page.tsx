@@ -11,11 +11,11 @@ import { MessageData, MessageForm } from "@/lib/types/Interfaces"
 export default function Message() {
   const [info, setInfo] = useState<MessageData[] | null>(null)
 
-  const { register, handleSubmit, reset } = useForm<MessageForm>()
+  const { register, handleSubmit } = useForm<MessageForm>()
   const onSubmit = async (data: MessageForm) => {
     const imgURl = await uploadImage(data?.image[0])
 
-    const res = await fetch("/api/message", {
+   await fetch("/api/message", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -46,6 +46,7 @@ export default function AboutSchool() {
         toast.success("Successfully added")
       }
     } catch (err) {
+      console.error(err)
       toast.error("something went wrong!")
     } finally {
       setSpinner(false)

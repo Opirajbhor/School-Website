@@ -3,10 +3,8 @@ import AboutSection from "@/Custom-Components/aboutSchool"
 import NoticeBoard from "@/Custom-Components/NoticeSection"
 import MessageSection from "@/Custom-Components/MessageSection"
 import TeacherSection from "@/Custom-Components/Stuff-Section/TeacherSection"
-import StudentStatistics from "@/Custom-Components/StudentStatistics"
 import MediaGallery from "@/Custom-Components/GallerySection"
 import InstitutionStatistics from "@/Custom-Components/InstitutionStatistics"
-import Footer from "@/Custom-Components/Footer"
 
 export default function Page() {
   return (

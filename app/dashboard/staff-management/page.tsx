@@ -72,6 +72,8 @@ export default function StuffManagement() {
         setStaffPanel(false)
       }
     } catch (error) {
+      console.error(error)
+
       toast.error("teacher adding failed")
     } finally {
       setSpin(false)

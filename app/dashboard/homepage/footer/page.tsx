@@ -29,6 +29,7 @@ export default function Statistics() {
         setInfo(data)
       }
     } catch (err) {
+      console.error(err)
       toast.error("info update failed")
     } finally {
       setSpin(false)

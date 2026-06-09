@@ -20,11 +20,11 @@ export async function GET(
   { params }: { params: Promise<{ name: string }> }
 ) {
   try {
-    // const { name } = await params
-    // const info = await prisma.staff.findFirst({
-    //   where: { name },
-    // })
-    const info = null
+    const { name } = await params
+    const info = await prisma.staff.findFirst({
+      where: { name },
+    })
+
     if (info === null) {
       return NextResponse.json(teacher)
     }

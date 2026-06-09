@@ -1,5 +1,5 @@
 import React from "react"
-import { Eye, Download, Home, ChevronRight } from "lucide-react"
+import { Eye, Download} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Table,
@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma/prisma"
 

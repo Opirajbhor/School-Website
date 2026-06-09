@@ -23,7 +23,7 @@ export default function Message() {
     }
     const imgURl = await uploadImage(imageFile)
 
-    const res = await fetch("/api/message", {
+   await fetch("/api/message", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image"
-import { galleryType, logoName } from "@/lib/types/type"
+import {  logoName } from "@/lib/types/type"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
@@ -44,7 +44,7 @@ export default function LogoName() {
     if (imageFile) {
       imgURl = await uploadImage(imageFile)
     }
-    const res = await api.put("/logo-name", {
+   await api.put("/logo-name", {
       name: data?.name,
       slogan: data?.slogan,
       imageUrl: imgURl,

@@ -4,7 +4,6 @@ import {
   ChartColumn,
   Feather,
   InspectionPanel,
-  LogOut,
   MessagesSquare,
   SwitchCamera,
 } from "lucide-react"
