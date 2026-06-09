@@ -13,10 +13,17 @@ export interface dashboardLinks {
   icon?: JSX.Element
 }
 
-export interface messageHead {
+export interface MessageData {
   title: string
   name: string
   image: string
+  desc: string
+}
+
+export interface MessageForm {
+  title?: string
+  name: string
+  image: FileList
   desc: string
 }
 

@@ -49,3 +49,12 @@ export type footerAddress = {
   phone02?: string
   email: string
 }
+
+
+export type StatsForm = {
+  students: string
+  teachers: string
+  stuff: string
+  totalRoom: string
+  building: string
+}

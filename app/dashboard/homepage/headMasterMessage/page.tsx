@@ -6,12 +6,13 @@ import toast, { Toaster } from "react-hot-toast"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import Image from "next/image"
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import { MessageData, MessageForm } from "@/lib/types/Interfaces"
 
 export default function Message() {
-  const [info, setInfo] = useState(null)
+  const [info, setInfo] = useState<MessageData[] | null>(null)
 
-  const { register, handleSubmit, reset } = useForm()
-  const onSubmit = async (data: Request) => {
+  const { register, handleSubmit, reset } = useForm<MessageForm>()
+  const onSubmit = async (data: MessageForm) => {
     const imgURl = await uploadImage(data?.image[0])
 
     const res = await fetch("/api/message", {
@@ -22,8 +23,8 @@ export default function Message() {
       body: JSON.stringify({
         key: "headMaster",
         title: "প্রধান শিক্ষকের বাণী",
-        name: data?.name ?? info[1]?.name,
-        desc: data?.desc ?? info[1]?.desc,
+        name: data?.name,
+        desc: data?.desc,
         ...(imgURl && { image: imgURl }),
       }),
     })

@@ -6,13 +6,22 @@ import toast, { Toaster } from "react-hot-toast"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import Image from "next/image"
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
+import { MessageData, MessageForm } from "@/lib/types/Interfaces"
 
 export default function Message() {
-  const [info, setInfo] = useState(null)
+  const [info, setInfo] = useState<MessageData[] | null>(null)
 
-  const { register, handleSubmit } = useForm()
-  const onSubmit = async (data: Request) => {
-    const imgURl = await uploadImage(data?.image[0])
+  const { register, handleSubmit } = useForm<MessageForm>()
+  const onSubmit = async (data: MessageForm) => {
+    const maxImageSize = 500 * 1024 //500KB
+    const imageFile = data.image?.[0]
+    if (!imageFile) {
+      return toast.error("image file is required")
+    }
+    if (imageFile.size > maxImageSize) {
+      return toast.error("Image too big! Image size must be under 500KB")
+    }
+    const imgURl = await uploadImage(imageFile)
 
     const res = await fetch("/api/message", {
       method: "PUT",
@@ -22,8 +31,8 @@ export default function Message() {
       body: JSON.stringify({
         key: "chairman",
         title: "সভাপতি মহোদয়ের বাণী",
-        name: data?.name ?? info[1]?.name,
-        desc: data?.desc ?? info[1]?.desc,
+        name: data?.name,
+        desc: data?.desc,
         ...(imgURl && { image: imgURl }),
       }),
     })
@@ -61,7 +70,7 @@ export default function Message() {
             required
           />
           <textarea
-            className="h-auto min-h-[200px] w-full resize-none overflow-auto rounded-2xl border-2 border-black p-3"
+            className="h-auto min-h-50 w-full resize-none overflow-auto rounded-2xl border-2 border-black p-3"
             {...register("desc")}
             placeholder="description"
             defaultValue={info[0]?.desc}
@@ -69,8 +78,8 @@ export default function Message() {
           />
           <div className="relative h-20 w-20 overflow-hidden rounded-lg">
             <Image
-              src={info[0]?.image}
-              alt={info[0]?.title}
+              src={info[0]?.image || "./image.jpg"}
+              alt={info[0]?.title ||"charman"}
               fill
               className="object-cover"
             />

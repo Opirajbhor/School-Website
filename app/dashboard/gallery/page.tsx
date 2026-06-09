@@ -3,13 +3,13 @@ import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { galleryType } from "@/lib/types/type"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronUp, Trash, Trash2 } from "lucide-react"
+import { ChevronDown, ChevronUp, Trash } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import toast, { Toaster } from "react-hot-toast"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { imagePreview } from "@/lib/imagePreview"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { api } from "@/lib/axios/axios"
@@ -88,7 +88,7 @@ export default function Gallery() {
 
   // isLoading
   if (isLoading) {
-    return LoadingSpinner
+    return <LoadingSpinner />
   }
   // error
   if (error) {

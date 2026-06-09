@@ -3,15 +3,19 @@ import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { StatsForm } from "@/lib/types/type"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import toast, { Toaster } from "react-hot-toast"
-
+type StatItem = {
+  key: string
+  value: string
+}
 export default function Statistics() {
-  const { register, handleSubmit } = useForm()
-  const [info, setInfo] = useState(null)
+  const { register, handleSubmit } = useForm<StatsForm>()
+  const [info, setInfo] = useState<StatItem[] | null>(null)
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: StatsForm) => {
     const entries = Object.entries(data).map(([key, value]) => ({
       key,
       value: String(value),

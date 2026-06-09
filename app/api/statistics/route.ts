@@ -10,10 +10,10 @@ export async function GET() {
 
 export async function PUT(req: Request) {
   try {
-    const data = await req.json()
+    const data = await req.json() as Array<{ key: string; value: string }>
 
     const result = await Promise.all(
-      data.map((item: any) =>
+      data.map((item: { key: string; value: string }) =>
         prisma.statistics.upsert({
           where: { key: item.key },
           update: { value: item.value },
@@ -26,9 +26,10 @@ export async function PUT(req: Request) {
     )
 
     return Response.json(result)
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     console.error("API ERROR:", error)
 
-    return Response.json({ error: error.message }, { status: 500 })
+    return Response.json({ error: errorMessage }, { status: 500 })
   }
 }

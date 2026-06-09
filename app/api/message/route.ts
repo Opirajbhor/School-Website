@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma"
-import { messageHead } from "@/lib/types/Interfaces"
+import { MessageData } from "@/lib/types/Interfaces"
 import { NextResponse } from "next/server"
 
 export async function GET() {
@@ -12,7 +12,7 @@ export async function GET() {
 export async function PUT(req: Request) {
   const body = await req.json()
 
-  const info: messageHead = await prisma.messageHead.upsert({
+  const info: MessageData = await prisma.messageHead.upsert({
     where: { key: body.key },
     update: {
       title: body.title ?? "",

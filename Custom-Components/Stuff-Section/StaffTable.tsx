@@ -66,12 +66,12 @@ export default function StaffTable({ staffData }: StaffTableProps) {
                   </td>
                   {/* Index Column */}
                   <td className="px-6 py-3.5 whitespace-nowrap text-foreground">
-                    <span>{user?.index}</span>
+                    <span>{user?.mpoIndex}</span>
                   </td>
                   {/* Date Column */}
                   <td className="px-6 py-3.5 whitespace-nowrap text-muted-foreground">
-                    {user?.joinDate
-                      ? new Date(user.joinDate).toLocaleDateString()
+                    {user?.joiningDate
+                      ? new Date(user.joiningDate).toLocaleDateString()
                       : "N/A"}
                   </td>
                 </tr>
