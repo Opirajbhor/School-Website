@@ -38,6 +38,13 @@ export type notices = {
   description?: string
   createdAt: Date
 }
+export type notice = {
+  id?: string
+  title: string
+  fileUrl: string
+  description?: string
+  createdAt: Date
+}
 
 export type footerAddress = {
   id: string
