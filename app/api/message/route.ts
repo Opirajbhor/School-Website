@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma/prisma"
 import { MessageData } from "@/lib/types/Interfaces"
 import { NextResponse } from "next/server"
-
+import { revalidatePath } from "next/cache"
 export async function GET() {
   const data = await prisma.messageHead.findMany({
     orderBy: { createdAt: "desc" },
@@ -28,6 +28,8 @@ export async function PUT(req: Request) {
       desc: body.desc ?? "",
     },
   })
+  revalidatePath("/")
+  revalidatePath("/message")
 
   return NextResponse.json(info)
 }
