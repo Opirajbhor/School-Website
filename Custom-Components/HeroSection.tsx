@@ -5,7 +5,6 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 import { prisma } from "@/lib/prisma/prisma"
-export const dynamic = "force-dynamic"
 export default async function HeroSlider() {
   const data = await prisma.banner.findMany()
   return (

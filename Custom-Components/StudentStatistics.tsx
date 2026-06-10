@@ -1,5 +1,4 @@
 import React from "react";
-export const dynamic = "force-dynamic"
 interface StatisticsData {
   count: number;
   label: string;

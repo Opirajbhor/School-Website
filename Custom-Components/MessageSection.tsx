@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Quote } from "lucide-react"
 import { prisma } from "@/lib/prisma/prisma"
 import Link from "next/link"
-export const dynamic = "force-dynamic"
 // const messages = [
 //   {
 //     title: "উপাধ্যক্ষের বাণী",

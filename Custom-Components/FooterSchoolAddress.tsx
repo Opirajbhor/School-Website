@@ -1,7 +1,6 @@
 import React from "react"
 import { MapPin, Phone, Mail } from "lucide-react"
 import { prisma } from "@/lib/prisma/prisma"
-export const dynamic = "force-dynamic"
 export default async function FooterSchoolAddress() {
   const info = await prisma.footerAddress.findFirst()
   return (

@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma/prisma"
 import { staffDataType } from "@/lib/types/type"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
 const fallbackTeachers = [
@@ -56,7 +57,8 @@ export async function POST(req: Request) {
       imageUrl: data.imageUrl!,
     },
   })
-
+  revalidatePath("/")
+  revalidatePath("/teachers")
   return NextResponse.json(info)
 }
 
@@ -87,6 +89,7 @@ export async function PUT(req: Request) {
       imageUrl: data?.imageUrl,
     },
   })
-
+  revalidatePath("/")
+  revalidatePath("/teachers")
   return NextResponse.json(info)
 }

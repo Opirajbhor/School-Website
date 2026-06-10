@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma/prisma"
 import { staffDataType } from "@/lib/types/type"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
 const teacher: staffDataType = {
@@ -19,8 +20,8 @@ export async function GET(
   req: Request,
   { params }: { params: Promise<{ name: string }> }
 ) {
+  const { name } = await params
   try {
-    const { name } = await params
     const info = await prisma.staff.findFirst({
       where: { name },
     })
@@ -36,5 +37,9 @@ export async function GET(
       { error: "Failed to get teacher info", err },
       { status: 500 }
     )
+  } finally {
+    revalidatePath("/")
+
+    revalidatePath(`/teachers/${name}`)
   }
 }

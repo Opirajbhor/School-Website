@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma/prisma"
 import { footerAddress } from "@/lib/types/type"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
 // dummy data
@@ -44,6 +45,7 @@ export async function PUT(req: Request) {
         phone02: body?.phone02 ?? "",
       },
     })
+    revalidatePath("/")
 
     return NextResponse.json(info)
   } catch (error) {

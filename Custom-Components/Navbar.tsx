@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import ModeToggle from "../components/ui/modeToggle"
 import Image from "next/image"
 import { prisma } from "@/lib/prisma/prisma"
-export const dynamic = "force-dynamic"
 export default async function Navbar() {
   // Logo and name Data Fetch
   const logoName = await prisma.logoName.findFirst()

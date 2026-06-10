@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
 export async function GET() {
@@ -17,7 +18,6 @@ export async function GET() {
 export async function PUT(req: Request) {
   const reqbody = await req.json()
   const body = reqbody.data
-  console.log(body)
   const info = await prisma.aboutSchool.upsert({
     where: { key: "main" },
     update: {
@@ -32,6 +32,8 @@ export async function PUT(req: Request) {
       imageUrl: body.imageUrl,
     },
   })
+  revalidatePath("/")
+  revalidatePath("/about-school")
 
   return NextResponse.json(info)
 }

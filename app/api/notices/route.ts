@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
 export async function GET() {
@@ -18,6 +19,8 @@ export async function POST(req: Request) {
       fileUrl: body.fileUrl,
     },
   })
+  revalidatePath("/")
+  revalidatePath("/notices")
 
   return NextResponse.json(notice)
 }
@@ -41,6 +44,9 @@ export async function DELETE(req: Request) {
       },
       { status: 500 }
     )
+  } finally {
+    revalidatePath("/")
+    revalidatePath("/notices")
   }
 }
 
@@ -51,6 +57,7 @@ export async function PUT(req: Request) {
     where: { id: body?.id },
     data: { title: body?.title, description: body?.description },
   })
-
+  revalidatePath("/")
+  revalidatePath("/notices")
   return NextResponse.json(notice, { status: 200 })
 }

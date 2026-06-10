@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 import { error } from "node:console"
 
@@ -38,7 +39,7 @@ export async function PUT(req: Request) {
         slogan: body?.slogan,
       },
     })
-
+    revalidatePath("/")
     return NextResponse.json(updated)
   }
 
@@ -49,6 +50,7 @@ export async function PUT(req: Request) {
       slogan: body?.slogan,
     },
   })
+  revalidatePath("/")
 
   return NextResponse.json(created)
 }

@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 
 export async function GET() {
@@ -17,6 +18,8 @@ export async function POST(req: Request) {
       imageUrl: body?.imageUrl,
     },
   })
+  revalidatePath("/")
+  revalidatePath("/gallery")
 
   return NextResponse.json(info)
 }
@@ -30,6 +33,8 @@ export async function DELETE(req: Request) {
         id: body,
       },
     })
+    revalidatePath("/")
+    revalidatePath("/gallery")
     return NextResponse.json(info)
   } catch (error) {
     console.error(error)

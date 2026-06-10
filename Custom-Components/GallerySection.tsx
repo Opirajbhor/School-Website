@@ -5,7 +5,6 @@ import Link from "next/link"
 import { GalleryGrid } from "./GalleryGrid"
 import { galleryType } from "@/lib/types/type"
 import { prisma } from "@/lib/prisma/prisma"
-export const dynamic = "force-dynamic"
 export default async function MediaGallery() {
   // fetch data
   const galleryData: galleryType[] = await prisma.gallery.findMany({

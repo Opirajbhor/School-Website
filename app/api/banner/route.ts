@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma"
+import { revalidatePath } from "next/cache"
 import { NextResponse } from "next/server"
 export async function GET() {
   const notices = await prisma.banner.findMany({
@@ -21,6 +22,7 @@ export async function PUT(req: Request) {
       imageUrl: body.imageUrl ?? "",
     },
   })
-
+    revalidatePath("/")
+  
   return NextResponse.json(info)
 }
