@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/prisma/prisma"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-
+export const dynamic = "force-dynamic"
 export default async function AboutSection() {
   //   fetch data
   const info = await prisma.aboutSchool.findFirst()

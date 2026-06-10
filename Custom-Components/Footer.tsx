@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import FooterSchoolAddress from "./FooterSchoolAddress"
-
+export const dynamic = "force-dynamic"
 const Footer = async () => {
   const info = await prisma.logoName.findFirst()
   return (

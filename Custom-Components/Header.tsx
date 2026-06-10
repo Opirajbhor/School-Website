@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma/prisma"
 import React from "react"
-
+export const dynamic = "force-dynamic"
 type notice = {
   id: string
   title: string

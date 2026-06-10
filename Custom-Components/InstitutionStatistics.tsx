@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma/prisma"
 import React from "react"
-
+export const dynamic = "force-dynamic"
 interface InstitutionStat {
   key: string
   value: string

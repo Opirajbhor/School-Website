@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card"
 import { prisma } from "@/lib/prisma/prisma"
 import { Megaphone, ArrowRight } from "lucide-react"
 import Link from "next/link"
-
+export const dynamic = "force-dynamic"
 export default async function NoticeBoard() {
   // notice fetch
   const notices = await prisma.notice.findMany({
