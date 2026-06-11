@@ -11,7 +11,7 @@ export default async function FooterSchoolAddress() {
       </div>
 
       {/* Content List */}
-      <div className="space-y-3">
+      <div className="lg:space-y-3">
         {/* Address */}
         <div className="flex items-center gap-4">
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-muted text-primary">

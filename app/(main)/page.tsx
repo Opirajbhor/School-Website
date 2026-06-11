@@ -12,11 +12,11 @@ export default function Page() {
       <div className="-mt-2 -mb-10 flex p-4">
         <HeroSlider></HeroSlider>
       </div>
-      <div className="flex w-full items-center justify-between">
-        <div className="w-2/3">
+      <div className="lg:flex w-full items-center justify-between">
+        <div className="lg:w-2/3">
           <AboutSection></AboutSection>
         </div>
-        <div className="w-1/3">
+        <div className="lg:w-1/3">
           <NoticeBoard></NoticeBoard>
         </div>
       </div>

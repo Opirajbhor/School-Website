@@ -17,7 +17,7 @@ export default async function MediaGallery() {
         {/* Header with Navigation */}
         <div className="mb-8 flex items-center justify-between gap-4">
           <div className="flex flex-1 items-center gap-4">
-            <h2 className="text-2xl font-bold whitespace-nowrap text-foreground">
+            <h2 className="text-xl lg:text-2xl font-bold whitespace-nowrap text-foreground">
               ছবি গ্যালারী
             </h2>
             <div className="h-px w-full bg-border" />

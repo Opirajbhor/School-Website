@@ -15,14 +15,14 @@ export function PreviewImage({ image, onClose }: PreviewImageProps) {
       onClick={onClose}
     >
       <button
-        className="absolute top-4 right-4 cursor-pointer text-3xl text-white"
+        className="absolute top-4 right-4 cursor-pointer text-2xl text-white"
         onClick={onClose}
       >
         X
       </button>
 
       <div
-        className="relative h-[90vh] w-full max-w-6xl"
+        className="relative lg:h-[90vh] h-[80vh] w-full max-w-6xl"
         onClick={(e) => e.stopPropagation()}
       >
         <Image

@@ -14,7 +14,7 @@ export function GalleryGrid({ galleryData }: GalleryGridProps) {
         <div
           onClick={() => setSelect(item)}
           key={item?.id}
-          className="group shadow-soft relative aspect-4/3 cursor-pointer overflow-hidden rounded-xl bg-muted transition-all duration-300 hover:shadow-xl"
+          className="group shadow-soft relative lg:aspect-4/3 aspect-4/2 cursor-pointer overflow-hidden rounded-xl bg-muted transition-all duration-300 hover:shadow-xl"
         >
           <Image
             src={item?.imageUrl}

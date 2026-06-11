@@ -8,10 +8,10 @@ export default async function AboutSection() {
   const info = await prisma.aboutSchool.findFirst()
 
   return (
-    <section className="w-full bg-background">
-      <div className="relative mx-auto max-w-7xl px-4">
+    <section className=" w-full  bg-background">
+      <div className="mx-auto max-w-7xl px-4 lg:relative flex gap-2 flex-col-reverse lg:mt-1 mt-5">
         {/* Image */}
-        <div className="relative h-112.5 w-full overflow-hidden rounded-xl md:w-[60%]">
+        <div className="relative h-65 w-full overflow-hidden rounded-xl md:w-[60%] lg:h-112.5">
           <Image
             src={info?.imageUrl || "/logo.png"}
             alt="school"
@@ -26,7 +26,7 @@ export default async function AboutSection() {
         {/* Card */}
         <div className="relative mt-6 w-full md:absolute md:top-12 md:right-0 md:mt-0 md:w-[55%]">
           <div className="space-y-4 rounded-xl bg-card p-6 text-card-foreground shadow-lg md:p-8">
-            <h2 className="text-2xl font-bold md:text-3xl">{info?.title}</h2>
+            <h2 className="text-xl font-bold md:text-3xl">{info?.title}</h2>
 
             <div className="h-1 w-16 rounded-full bg-primary" />
 

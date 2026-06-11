@@ -11,20 +11,20 @@ export default async function NoticeBoard() {
   })
 
   return (
-    <section className="w-50% bg-muted/40 py-16">
+    <section className="w-50% bg-muted/40 lg:py-16 py-8">
       <div className="mx-auto max-w-3xl px-4">
         {/* Header */}
         <div className="mb-6 flex items-center justify-center gap-2">
           <Megaphone className="text-destructive" />
-          <h2 className="text-2xl font-bold">নোটিশ বোর্ড</h2>
+          <h2 className="text-xl font-bold">নোটিশ বোর্ড</h2>
         </div>
 
         {/* Notices */}
-        <div className="space-y-4">
+        <div className="lg:space-y-4 space-y-2">
           {notices.map((notice, i) => (
             <Card
               key={i}
-              className="flex flex-row items-center justify-between rounded-xl p-4 shadow-sm"
+              className="flex flex-row items-center justify-between rounded-xl p-2 lg:p-3 shadow-sm"
             >
               <p className="text-sm font-medium">{notice.title}</p>
 

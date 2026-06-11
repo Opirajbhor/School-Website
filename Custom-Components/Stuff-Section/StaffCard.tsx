@@ -8,9 +8,9 @@ import React from "react"
 
 const StaffCard = ({ staff }: { staff: staffDataType }) => {
   return (
-    <Card className="flex flex-col items-center gap-4 rounded-xl p-4 shadow-sm md:flex-row">
+    <Card className="flex flex-row  items-center gap-4 rounded-xl p-4 shadow-sm ">
       {/* Image */}
-      <div className="relative h-40 w-40 overflow-hidden rounded-xl">
+      <div className="relative lg:h-40 lg:w-40 h-35 w-30 overflow-hidden rounded-xl">
         <Image
           src={staff.imageUrl}
           alt={staff.name}
@@ -20,7 +20,7 @@ const StaffCard = ({ staff }: { staff: staffDataType }) => {
       </div>
 
       {/* Info */}
-      <div className="flex-1 space-y-2">
+      <div className="flex-1 lg:space-y-2">
         <h3 className="text-lg font-semibold">{staff.name}</h3>
         <p className="text-sm text-muted-foreground">({staff.designation})</p>
         <p className="text-sm text-muted-foreground">({staff.mpoIndex})</p>

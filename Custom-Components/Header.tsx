@@ -18,9 +18,9 @@ export default async function Header() {
   })
 
   return (
-    <div className="flex w-full flex-col items-center justify-between gap-4 border-b border-border bg-card px-4 py-3 text-sm font-medium text-muted-foreground shadow-sm md:flex-row">
+    <div className="flex w-full flex-col items-center justify-between gap-4 border-b border-border bg-card px-4 py-3 text-sm font-medium text-muted-foreground shadow-sm lg:flex-row lg:items-center lg:justify-between lg:gap-6">
       {/* Left Section: Moving Marquee Ticker */}
-      <div className="flex w-full min-w-0 flex-1 items-center py-1">
+      <div className=" w-full min-w-0 flex-1 items-center py-1 flex">
         {/* Static Badge (Stays anchored on the left) */}
         <div className="z-10 shrink-0 bg-card pr-3 pl-2">
           <div className="relative rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white dark:bg-emerald-700">
@@ -69,7 +69,7 @@ export default async function Header() {
       </div>
 
       {/* Right Section: Institutional Dynamic Data */}
-      <div className="flex shrink-0 flex-wrap items-center gap-x-4 gap-y-1 text-xs font-normal text-muted-foreground md:text-sm">
+      <div className="lg:flex hidden shrink-0 flex-wrap items-center gap-x-4 gap-y-1 text-xs font-normal text-muted-foreground md:text-sm">
         {/* EIIN No */}
         <div className="flex items-center gap-1.5">
           <span>EIIN No:</span>

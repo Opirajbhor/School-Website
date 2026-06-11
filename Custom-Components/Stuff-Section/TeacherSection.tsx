@@ -10,22 +10,22 @@ export default async function TeacherSection() {
   })
 
   return (
-    <section className="w-full bg-background py-16">
+    <section className="w-full bg-background lg:py-16 py-8">
       <div className="mx-auto max-w-7xl px-4">
         {/* Header */}
-        <h2 className="mb-8 text-2xl font-bold md:text-3xl">
+        <h2 className="mb-8 lg:text-2xl text-xl font-bold md:text-3xl">
           স্কুল শিক্ষক মন্ডলী
         </h2>
 
         {/* Grid */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid lg:gap-6 gap-3 md:grid-cols-2">
           {teachers.map((teacher, i) => (
             <StaffCard staff={teacher} key={i} />
           ))}
         </div>
 
         {/* Bottom */}
-        <Link href={"/teachers"} className="mt-8 flex justify-center">
+        <Link href={"/teachers"} className="mt-6 flex justify-center">
           <Button>সকল শিক্ষকবৃন্দ →</Button>
         </Link>
       </div>

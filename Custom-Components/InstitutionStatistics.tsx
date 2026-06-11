@@ -39,10 +39,10 @@ const InstitutionStatistics = async () => {
     },
   ]
   return (
-    <section className="bg-background py-16">
+    <section className="bg-background lg:py-16 py-8">
       <div className="container px-4">
         {/* Section Heading */}
-        <div className="mb-12 flex items-center gap-4">
+        <div className="lg:mb-12 mb-6 flex items-center gap-4">
           <h2 className="text-2xl font-bold whitespace-nowrap text-foreground">
             প্রতিষ্ঠানের পরিসংখ্যান
           </h2>
@@ -50,13 +50,13 @@ const InstitutionStatistics = async () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-3 lg:gap-6 gap-3 md:grid-cols-3 lg:grid-cols-5">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="flex aspect-square flex-col items-center justify-center rounded-full border border-border bg-card p-6 transition-all hover:border-primary hover:shadow-md"
+              className="flex aspect-square flex-col items-center justify-center rounded-full border border-border bg-card lg:p-6 p-4 transition-all hover:border-primary hover:shadow-md"
             >
-              <span className="mb-2 text-4xl font-bold text-primary">
+              <span className="mb-2 lg:text-4xl text-xl font-bold text-primary">
                 {stat.value}
               </span>
               <span className="text-center text-sm font-medium text-foreground">

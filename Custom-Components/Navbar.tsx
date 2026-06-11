@@ -7,29 +7,30 @@ import { Button } from "@/components/ui/button"
 import ModeToggle from "../components/ui/modeToggle"
 import Image from "next/image"
 import { prisma } from "@/lib/prisma/prisma"
+import MobileNavbar from "./MobileNavbar"
 export default async function Navbar() {
   // Logo and name Data Fetch
   const logoName = await prisma.logoName.findFirst()
   const navLinks = [
     {
       href: "/",
-      tittle: "মূলপাতা",
+      title: "মূলপাতা",
     },
     {
       href: "/about-school",
-      tittle: "বিদ্যালয় সম্পর্কে",
+      title: "বিদ্যালয় সম্পর্কে",
     },
     {
       href: "/teachers",
-      tittle: "শিক্ষকগণ",
+      title: "শিক্ষকগণ",
     },
     {
       href: "/notices",
-      tittle: "নোটিশসমূহ",
+      title: "নোটিশসমূহ",
     },
     {
       href: "/gallery",
-      tittle: "গ্যালারী",
+      title: "গ্যালারী",
     },
   ]
 
@@ -49,7 +50,9 @@ export default async function Navbar() {
                 ></Image>
               </div>
               <div>
-                <h1 className="text-lg font-semibold">{logoName?.name}</h1>
+                <h1 className="text-sm font-semibold lg:text-lg">
+                  {logoName?.name}
+                </h1>
                 <p className="text-xs text-muted-foreground">
                   {logoName?.slogan}
                 </p>
@@ -67,7 +70,7 @@ export default async function Navbar() {
                   href={link?.href}
                   className="block text-2xl text-muted-foreground duration-150 hover:text-accent-foreground"
                 >
-                  {link?.tittle}
+                  {link?.title}
                 </Link>
               </NavigationMenuLink>
             ))}
@@ -75,8 +78,9 @@ export default async function Navbar() {
         </NavigationMenu>
 
         {/* Right */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <ModeToggle></ModeToggle>
+          <MobileNavbar navLinks={navLinks}></MobileNavbar>
           <Link href={"/dashboard/homepage"}>
             <Button className="hidden md:flex">Login</Button>
           </Link>
