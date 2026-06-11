@@ -1,16 +1,20 @@
-import React from "react"
+"use client"
+import React, { useState } from "react"
 import Image from "next/image"
 import { galleryType } from "@/lib/types/type"
+import { PreviewImage } from "./PreviewPicture"
 type GalleryGridProps = {
   galleryData: galleryType[]
 }
 export function GalleryGrid({ galleryData }: GalleryGridProps) {
+  const [select, setSelect] = useState<galleryType | null>(null)
   return (
     <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {galleryData?.map((item: galleryType) => (
         <div
+          onClick={() => setSelect(item)}
           key={item?.id}
-          className="group shadow-soft relative aspect-4/3 overflow-hidden rounded-xl bg-muted transition-all duration-300 hover:shadow-xl"
+          className="group shadow-soft relative aspect-4/3 cursor-pointer overflow-hidden rounded-xl bg-muted transition-all duration-300 hover:shadow-xl"
         >
           <Image
             src={item?.imageUrl}
@@ -29,6 +33,9 @@ export function GalleryGrid({ galleryData }: GalleryGridProps) {
           </div>
         </div>
       ))}
+      {select && (
+        <PreviewImage image={select} onClose={() => setSelect(null)} />
+      )}
     </div>
   )
 }
