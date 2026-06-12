@@ -1,7 +1,9 @@
 "use client"
+import Loading from "@/app/loading"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
 import { api } from "@/lib/axios/axios"
 import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
@@ -20,9 +22,11 @@ type Props = {
 export default function AddNotice({ setConnect, connect }: Props) {
   const [panel, setPanel] = useState(false)
   const [preview, setPreview] = useState<string | null>(null)
+  const [spin, setSpin] = useState<boolean>(false)
 
   const { register, handleSubmit, reset } = useForm<notices>()
   const onSubmit = async (data: notices) => {
+    setSpin(true)
     const imageFile = data.file?.[0]
     const maxImageSize = 500 * 1024 //500KB
     if (imageFile && imageFile.size > maxImageSize) {
@@ -50,6 +54,8 @@ export default function AddNotice({ setConnect, connect }: Props) {
     } catch (error) {
       console.error(error)
       toast.error("Failed to add notice")
+    } finally {
+      setSpin(false)
     }
   }
   return (
@@ -100,9 +106,11 @@ export default function AddNotice({ setConnect, connect }: Props) {
                   required
                 />
               </div>
-              <button type="submit" className="bg-primary text-secondary">
-                Submit
-              </button>
+              <div className="mb-5 space-y-2">
+              <Button disabled={spin} type="submit">
+                {spin && <Spinner />} Submit
+              </Button>
+            </div>
             </form>
           </div>
           <div>

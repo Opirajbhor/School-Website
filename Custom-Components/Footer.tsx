@@ -10,7 +10,7 @@ const Footer = async () => {
   <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:grid-cols-2 lg:grid-cols-3 lg:px-8">
 
     {/* Brand Section */}
-    <aside className="space-y-4">
+    <aside className="space-y-4 lg:flex hidden">
       <div className="flex items-center gap-2 text-lg font-bold text-foreground">
         <Image
           src={info?.imageUrl || "/logo.png"}
