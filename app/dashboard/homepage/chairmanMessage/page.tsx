@@ -8,13 +8,17 @@ import Image from "next/image"
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { MessageData, MessageForm } from "@/lib/types/Interfaces"
 import { imagePreview } from "@/lib/imagePreview"
+import { Button } from "@/components/ui/button"
+import { Spinner } from "@/components/ui/spinner"
 
 export default function Message() {
-  const [info, setInfo] = useState<MessageData[] | null>(null)
+  const [info, setInfo] = useState<MessageData | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
+  const [spin, setSpin] = useState<boolean>(false)
 
   const { register, handleSubmit } = useForm<MessageForm>()
   const onSubmit = async (data: MessageForm) => {
+    setSpin(true)
     const maxImageSize = 500 * 1024 //500KB
     const imageFile = data.image?.[0]
 
@@ -41,6 +45,7 @@ export default function Message() {
       }),
     })
     toast.success("Message Successfully Added!")
+    setSpin(false)
     window.location.reload()
   }
 
@@ -49,7 +54,8 @@ export default function Message() {
     async function load() {
       const res = await fetch("/api/message")
       const json = await res.json()
-      setInfo(json)
+      const data = json.find((item: MessageData) => item.key === "chairman")
+      setInfo(data)
       setPreview(json[0]?.image)
     }
     load()
@@ -71,21 +77,21 @@ export default function Message() {
             className="h-10 rounded-2xl border-2 border-black p-3"
             {...register("name")}
             placeholder="Name"
-            defaultValue={info[0]?.name}
+            defaultValue={info?.name}
             required
           />
           <textarea
             className="h-auto min-h-50 w-full resize-none overflow-auto rounded-2xl border-2 border-black p-3"
             {...register("desc")}
             placeholder="description"
-            defaultValue={info[0]?.desc}
+            defaultValue={info?.desc}
             required
           />
 
           <div className="relative h-20 w-20 overflow-hidden rounded-lg">
             <Image
               src={preview || "./image.jpg"}
-              alt={info[0]?.title || "chairman"}
+              alt={info?.title || "chairman"}
               fill
               className="object-cover"
             />
@@ -101,9 +107,11 @@ export default function Message() {
               },
             })}
           />
-          <button className="rounded-2xl bg-accent p-3" type="submit">
-            Submit
-          </button>
+          <div className="mb-5 cursor-pointer space-y-2">
+            <Button disabled={spin} type="submit">
+              {spin && <Spinner />} Submit
+            </Button>
+          </div>
         </form>
       </div>
       <Toaster />

@@ -18,6 +18,7 @@ export interface MessageData {
   name: string
   image: string
   desc: string
+  key: string
 }
 
 export interface MessageForm {
