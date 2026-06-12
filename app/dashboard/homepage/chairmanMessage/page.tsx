@@ -7,15 +7,19 @@ import { uploadImage } from "@/lib/cloudinary/Image.Cloudinary"
 import Image from "next/image"
 import LoadingSpinner from "@/Custom-Components/Dashboard-Compo/LoadingSpinner"
 import { MessageData, MessageForm } from "@/lib/types/Interfaces"
+import { imagePreview } from "@/lib/imagePreview"
 
 export default function Message() {
   const [info, setInfo] = useState<MessageData[] | null>(null)
+  const [preview, setPreview] = useState<string | null>(null)
 
   const { register, handleSubmit } = useForm<MessageForm>()
   const onSubmit = async (data: MessageForm) => {
     const maxImageSize = 500 * 1024 //500KB
     const imageFile = data.image?.[0]
+
     if (!imageFile) {
+      setPreview(null)
       return toast.error("image file is required")
     }
     if (imageFile.size > maxImageSize) {
@@ -23,7 +27,7 @@ export default function Message() {
     }
     const imgURl = await uploadImage(imageFile)
 
-   await fetch("/api/message", {
+    await fetch("/api/message", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -46,6 +50,7 @@ export default function Message() {
       const res = await fetch("/api/message")
       const json = await res.json()
       setInfo(json)
+      setPreview(json[0]?.image)
     }
     load()
   }, [])
@@ -76,10 +81,11 @@ export default function Message() {
             defaultValue={info[0]?.desc}
             required
           />
+
           <div className="relative h-20 w-20 overflow-hidden rounded-lg">
             <Image
-              src={info[0]?.image || "./image.jpg"}
-              alt={info[0]?.title ||"charman"}
+              src={preview || "./image.jpg"}
+              alt={info[0]?.title || "chairman"}
               fill
               className="object-cover"
             />
@@ -89,7 +95,11 @@ export default function Message() {
             className="h-12 rounded-2xl border-2 border-black p-3"
             type="file"
             accept="image/*"
-            {...register("image")}
+            {...register("image", {
+              onChange: (e) => {
+                setPreview(imagePreview(e.target.files[0]))
+              },
+            })}
           />
           <button className="rounded-2xl bg-accent p-3" type="submit">
             Submit
