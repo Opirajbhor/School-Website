@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma/prisma"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import React from "react"
+import LogoutButton from "./Logout"
 
 export default async function HeaderDashboard() {
   // data fetch
@@ -27,9 +28,7 @@ export default async function HeaderDashboard() {
 
       <div className="flex items-center gap-3">
         <ModeToggle></ModeToggle>
-        <Link href={`/logout`}>
-          <button className="rounded-2xl bg-secondary p-2">Logout</button>
-        </Link>
+        <LogoutButton />
       </div>
     </div>
   )
