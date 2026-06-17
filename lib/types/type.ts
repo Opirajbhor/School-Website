@@ -57,11 +57,20 @@ export type footerAddress = {
   email: string
 }
 
-
 export type StatsForm = {
   students: string
   teachers: string
   stuff: string
   totalRoom: string
   building: string
+}
+
+// ----------------------------------------------------------
+// ---------- Student Management-----------------------------
+// ----------------------------------------------------------
+
+export type session = {
+  id: string
+  session_name: string
+  session_status: "Active" | "Closed"
 }
