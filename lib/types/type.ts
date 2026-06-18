@@ -64,13 +64,3 @@ export type StatsForm = {
   totalRoom: string
   building: string
 }
-
-// ----------------------------------------------------------
-// ---------- Student Management-----------------------------
-// ----------------------------------------------------------
-
-export type session = {
-  id: string
-  session_name: string
-  session_status: "Active" | "Closed"
-}
