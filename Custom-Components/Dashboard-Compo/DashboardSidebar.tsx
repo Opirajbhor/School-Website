@@ -1,12 +1,24 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { dashboardLinks } from "@/lib/types/Interfaces"
-import { House, Images, Info, Mails, Users } from "lucide-react"
+import {
+  House,
+  Images,
+  Info,
+  LayoutDashboardIcon,
+  Mails,
+  Users,
+} from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 // dashboard links
 const links: dashboardLinks[] = [
+  {
+    name: "Dashboard",
+    src: "/dashboard",
+    icon: <LayoutDashboardIcon />,
+  },
   {
     name: "Homepage",
     src: "/dashboard/homepage",

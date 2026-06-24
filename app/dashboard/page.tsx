@@ -1,7 +1,18 @@
-export default function Page() {
-  return <div>
+import { DashboardInfoCard } from "@/Custom-Components/Dashboard-Compo/CardInfo"
+import { prisma } from "@/lib/prisma/prisma"
 
-
-    hello
-  </div>
+export default async function Page() {
+  const schoolInfo = await prisma.statistics.findMany()
+  console.log(schoolInfo)
+  return (
+    <div className="grid grid-cols-6 gap-3 items-center justify-around">
+      {schoolInfo.map((item) => (
+        <DashboardInfoCard
+          key={item.id}
+          title={item?.key}
+          value={item?.value}
+        />
+      ))}
+    </div>
+  )
 }

@@ -11,7 +11,7 @@ export default async function HeaderDashboard() {
   // -----
   return (
     <div className="mt-3 flex items-center justify-between border-b-2">
-      <div>
+      <div className="mb-3">
         <Link
           href={"/"}
           className="flex items-center justify-center gap-2 text-left text-base text-primary"
@@ -20,13 +20,13 @@ export default async function HeaderDashboard() {
         </Link>
       </div>
 
-      <div>
+      <div className="mb-3">
         <h1>
           {"Dashboard - "} {logoName?.name}
         </h1>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="0 mb-3 flex items-center gap-3">
         <ModeToggle></ModeToggle>
         <LogoutButton />
       </div>
