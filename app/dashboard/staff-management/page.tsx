@@ -197,7 +197,7 @@ export default function StuffManagement() {
         )}
         <Toaster />
       </div>
-      <StaffTable staffData={staffData ?? []} />
+      <StaffTable setLoad={setLoad} load={load} staffData={staffData ?? []} />
     </>
   )
 }

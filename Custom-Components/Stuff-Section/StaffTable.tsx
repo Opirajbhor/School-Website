@@ -1,13 +1,43 @@
-import React from "react"
+"use client"
+import React, { useState } from "react"
 import Image from "next/image"
 import { staffDataType } from "@/lib/types/type"
+import { Trash } from "lucide-react"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Spinner } from "@/components/ui/spinner"
+import { api } from "@/lib/axios/axios"
 
 type StaffTableProps = {
   staffData: staffDataType[]
+  load: boolean
+  setLoad: React.Dispatch<React.SetStateAction<boolean>>
 }
-export default function StaffTable({ staffData }: StaffTableProps) {
-  const totalItems = staffData?.length
+export default function StaffTable({
+  staffData,
+  setLoad,
+  load,
+}: StaffTableProps) {
+  const [loading, setLoading] = useState(false)
 
+  const totalItems = staffData?.length
+  // delete function
+  const deleteFn = async (id: string) => {
+    setLoading(true)
+    await api.delete("/staff", {
+      data: { id: id },
+    })
+    setLoad(!load)
+  }
   return (
     <div className="mx-auto w-full max-w-6xl p-4 font-sans text-foreground antialiased">
       {/* Table Container with shadcn border and background structure */}
@@ -23,6 +53,7 @@ export default function StaffTable({ staffData }: StaffTableProps) {
                 <th className="px-6 py-3.5 font-medium">Subject</th>
                 <th className="px-6 py-3.5 font-medium">Index</th>
                 <th className="px-6 py-3.5 font-medium">Joined</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -73,6 +104,41 @@ export default function StaffTable({ staffData }: StaffTableProps) {
                     {user?.joiningDate
                       ? new Date(user.joiningDate).toLocaleDateString()
                       : "N/A"}
+                  </td>
+                  <td>
+                    {/* delete notice  */}
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">
+                          <Trash
+                            size={20}
+                            className="cursor-pointer text-red-500"
+                          />
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-sm">
+                        <DialogHeader>
+                          <DialogTitle>Delete Profile</DialogTitle>
+                          <DialogDescription>
+                            Are you sure you want to delete this Profile?
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                          </DialogClose>
+                          <Button
+                            disabled={loading || !user?.id}
+                            onClick={() => {
+                              if (user?.id) deleteFn(user.id)
+                            }}
+                          >
+                            {loading && <Spinner />} Delete
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
                   </td>
                 </tr>
               ))}

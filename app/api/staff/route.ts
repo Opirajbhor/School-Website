@@ -93,3 +93,27 @@ export async function PUT(req: Request) {
   revalidatePath("/teachers")
   return NextResponse.json(info)
 }
+
+export async function DELETE(req: Request) {
+  const body = await req.json()
+  try {
+    const notice = await prisma.staff.delete({
+      where: { id: body.id },
+    })
+
+    return NextResponse.json({
+      success: true,
+    })
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        error,
+      },
+      { status: 500 }
+    )
+  } finally {
+    revalidatePath("/")
+    revalidatePath("/teachers")
+  }
+}
