@@ -4,10 +4,10 @@ export function middleware(request: NextRequest) {
   console.log("MIDDLEWARE RUNNING:", request.nextUrl.pathname)
   // Read cookie from incoming request
   const session = request.cookies.get("admin-session")
-  
+
   // If cookie is missing or invalid
   if (session?.value !== process.env.SESSION_TOKEN) {
-    return NextResponse.redirect(new URL("/login", request.url))
+    return NextResponse.redirect(new URL("/auth/login", request.url))
   }
 
   return NextResponse.next()

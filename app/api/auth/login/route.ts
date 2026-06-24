@@ -3,7 +3,6 @@ import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
   const user = await req.json()
-  console.log(user.data)
   const { email, password } = user.data
   const isValid =
     email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASS

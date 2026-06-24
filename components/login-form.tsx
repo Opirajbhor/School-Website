@@ -39,7 +39,6 @@ export function LoginForm({
 
   const onSubmit = async (data: auth) => {
     setSpinner(true)
-    console.log(data)
     try {
       const res = await api.post("/auth/login", {
         data: {
