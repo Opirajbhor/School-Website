@@ -30,7 +30,7 @@ export default async function AboutSection() {
 
             <div className="h-1 w-16 rounded-full bg-primary" />
 
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm line-clamp-[8] leading-relaxed text-muted-foreground">
               {info?.description}
             </p>
             <Link href={"/about-school"}>

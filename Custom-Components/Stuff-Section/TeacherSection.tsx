@@ -10,15 +10,20 @@ export default async function TeacherSection() {
   })
 
   return (
-    <section className="w-full bg-background lg:py-16 py-8">
+    <section className="w-full bg-background py-6 lg:py-10">
       <div className="mx-auto max-w-7xl px-4">
         {/* Header */}
-        <h2 className="mb-8 lg:text-2xl text-xl font-bold md:text-3xl">
-          স্কুল শিক্ষক মন্ডলী
-        </h2>
+        <div className="mb-8 flex items-center justify-between gap-4">
+          <div className="flex flex-1 items-center gap-4">
+            <h2 className="text-xl font-bold whitespace-nowrap text-foreground lg:text-2xl">
+              স্কুল শিক্ষক মন্ডলী
+            </h2>
+            <div className="h-px w-full bg-border" />
+          </div>
+        </div>
 
         {/* Grid */}
-        <div className="grid lg:gap-6 gap-3 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2 lg:gap-6">
           {teachers.map((teacher, i) => (
             <StaffCard staff={teacher} key={i} />
           ))}

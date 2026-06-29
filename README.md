@@ -326,7 +326,7 @@ import { useForm } from 'react-hook-form';
 export default function MyForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => (data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

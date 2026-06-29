@@ -28,7 +28,7 @@ export default function AboutSection() {
 
           <div className="h-1 w-16 rounded-full bg-primary" />
 
-          <p className="text-2xl text-justify leading-relaxed line-clamp-[12] text-muted-foreground">
+          <p className="text-md text-justify leading-relaxed text-muted-foreground">
             {info?.description}
           </p>
         </div>

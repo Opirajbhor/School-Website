@@ -12,8 +12,8 @@ export default function Page() {
       <div className="-mt-2 -mb-10 flex p-4">
         <HeroSlider></HeroSlider>
       </div>
-      <div className="lg:flex w-full items-center justify-between">
-        <div className="lg:w-2/3">
+      <div className="lg:flex w-full my-15 items-center justify-between">
+        <div className="lg:w-2/3 ">
           <AboutSection></AboutSection>
         </div>
         <div className="lg:w-1/3">
@@ -22,7 +22,7 @@ export default function Page() {
       </div>
       <MessageSection></MessageSection>
       <InstitutionStatistics></InstitutionStatistics>
-      {/* <StudentStatistics></StudentStatistics> */}
+      
       <TeacherSection></TeacherSection>
       <MediaGallery></MediaGallery>
     </>

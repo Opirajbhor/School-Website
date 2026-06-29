@@ -4,20 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Quote } from "lucide-react"
 import { prisma } from "@/lib/prisma/prisma"
 import Link from "next/link"
-// const messages = [
-//   {
-//     title: "উপাধ্যক্ষের বাণী",
-//     name: "মিসেস শিউলী আক্তার",
-//     image: "/person1.jpg",
-//     desc: `আমাদের স্কুলের লক্ষ্য হল শিক্ষার্থীদের একটি সুন্দর ও সুস্থ পরিবেশে মানসম্মত শিক্ষা প্রদান করা। আমরা শিক্ষার্থীদেরকে একজন ভালো মানুষ হিসেবে গড়ে তোলার লক্ষ্য কাজ করি। আমাদের স্কুলের উদ্দেশ্য হল শিক্ষার্থীদের তাদের সম্পূর্ণ সম্ভাবনা বিকাশে সাহায্য করা।`,
-//   },
-//   {
-//     title: "অধ্যক্ষের বাণী",
-//     name: "মোঃ মোস্তফা কামাল ভূঁইয়া",
-//     image: "/person2.jpg",
-//     desc: `প্রিয় শিক্ষার্থীরা, আজ আমি আপনাদের সামনে দাঁড়িয়েছি একজন শিক্ষক হিসেবে, একজন অভিভাবক হিসেবে, এবং একজন বন্ধু হিসেবে। আমি আপনাদের বলতে চাই, আপনারা সকলেই সক্ষম। আপনাদের নিজের উপর বিশ্বাস রাখতে হবে।`,
-//   },
-// ]
 
 export default async function MessageSection() {
   // fetch data
@@ -28,10 +14,14 @@ export default async function MessageSection() {
     <section className="w-full bg-background">
       <div className="mx-auto max-w-7xl px-4">
         {/* Header */}
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-2xl font-bold md:text-3xl">
-            স্কুল পরিচালকদের বাণী
-          </h2>
+
+        <div className="mb-8 flex items-center justify-between gap-4">
+          <div className="flex flex-1 items-center gap-4">
+            <h2 className="text-xl font-bold whitespace-nowrap text-foreground lg:text-2xl">
+              স্কুল পরিচালকদের বাণী
+            </h2>
+            <div className="h-px w-full bg-border" />
+          </div>
         </div>
 
         {/* Cards */}

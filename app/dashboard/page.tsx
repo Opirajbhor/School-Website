@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma/prisma"
 
 export default async function Page() {
   const schoolInfo = await prisma.statistics.findMany()
-  console.log(schoolInfo)
+  (schoolInfo)
   return (
     <div className="grid grid-cols-6 gap-3 items-center justify-around">
       {schoolInfo.map((item) => (

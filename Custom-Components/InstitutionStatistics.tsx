@@ -39,7 +39,7 @@ const InstitutionStatistics = async () => {
     },
   ]
   return (
-    <section className="bg-background lg:py-16 py-8">
+    <section className="bg-background lg:py-10 py-6">
       <div className="container px-4">
         {/* Section Heading */}
         <div className="lg:mb-12 mb-6 flex items-center gap-4">

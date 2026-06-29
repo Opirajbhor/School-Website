@@ -29,8 +29,7 @@ export async function GET(
     if (info === null) {
       return NextResponse.json(teacher)
     }
-    console.log(name)
-    console.log(info)
+  
     return NextResponse.json(info)
   } catch (err) {
     return NextResponse.json(

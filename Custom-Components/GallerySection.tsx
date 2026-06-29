@@ -12,7 +12,7 @@ export default async function MediaGallery() {
   })
   // --------------
   return (
-    <section className="bg-background py-12">
+    <section className="bg-background lg:py-10 py-6">
       <div className="container px-4">
         {/* Header with Navigation */}
         <div className="mb-8 flex items-center justify-between gap-4">

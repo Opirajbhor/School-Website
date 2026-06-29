@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
 export function middleware(request: NextRequest) {
-  console.log("MIDDLEWARE RUNNING:", request.nextUrl.pathname)
   // Read cookie from incoming request
   const session = request.cookies.get("admin-session")
 

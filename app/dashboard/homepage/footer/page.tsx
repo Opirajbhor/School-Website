@@ -18,7 +18,7 @@ export default function Statistics() {
   //   data submit function
   const onSubmit = async (data: footerAddress) => {
     setSpin(true)
-    console.log(data)
+    (data)
     try {
       const res = await api.put("/footer-address", {
         ...data,

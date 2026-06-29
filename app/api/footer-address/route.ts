@@ -49,7 +49,7 @@ export async function PUT(req: Request) {
 
     return NextResponse.json(info)
   } catch (error) {
-    console.log("PRISMA ERROR:", error)
+    console.error("PRISMA ERROR:", error)
 
     return NextResponse.json(
       {

@@ -21,7 +21,6 @@ export default function StaffDetail() {
     async function load() {
       const res = await api.get(`staff/${getName}`)
       setInfo(res.data)
-      console.log(res.data)
     }
 
     load()
