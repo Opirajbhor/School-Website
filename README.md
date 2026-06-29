@@ -212,7 +212,7 @@ school-website/
 
 Create a `.env.local` file with the following variables:
 
-```env
+````env
 # Database
 DATABASE_URL="your_database_connection_string"
 
@@ -238,7 +238,7 @@ SESSION_TOKEN=logged_in
 
    ```bash
    npm run dev
-   ```
+````
 
 2. **Access the application:**
    - Public site: [http://localhost:3000](http://localhost:3000)
@@ -326,7 +326,7 @@ import { useForm } from 'react-hook-form';
 export default function MyForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => (data);
+  const onSubmit = (data) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

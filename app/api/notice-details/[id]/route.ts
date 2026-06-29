@@ -5,7 +5,7 @@ export async function GET(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const {id} = await params
+  const { id } = await params
   const notice = await prisma.notice.findUnique({
     where: { id: id },
   })
